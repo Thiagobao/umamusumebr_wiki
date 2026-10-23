@@ -279,15 +279,15 @@
       border-color: #0284c7;
     }
 
-    /* MODAL DE VISUALIZAÇÃO EM TELA CHEIA (LIGHTBOX) */
+    /* MODAL DE VISUALIZAÇÃO EM TELA CHEIA (LIGHTBOX COM SETAS) */
     .image-modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.88);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 2000; /* Fica acima de tudo */
+      z-index: 2000;
       padding: 20px;
       animation: fadeIn 0.2s ease-in-out;
     }
@@ -297,13 +297,14 @@
     }
 
     .image-modal-content {
-      max-width: 90vw;
-      max-height: 90vh;
+      max-width: 85vw;
+      max-height: 85vh;
       object-fit: contain;
       border: none;
       background: transparent;
       box-shadow: none;
-      filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.6));
+      user-select: none;
     }
 
     .close-image-btn {
@@ -320,7 +321,37 @@
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      z-index: 2010;
     }
+
+    /* BOTÕES DE NAVEGAÇÃO (SETAS) */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      font-size: 1.8rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 2010;
+      user-select: none;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -341,11 +372,18 @@
       background: #0284c7 !important;
     }
 
-    /* Responsivo para celulares */
+    /* Responsivo para telemóveis */
     @media (max-width: 650px) {
       .artes-container {
         grid-template-columns: 1fr;
       }
+      .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+      }
+      .prev-btn { left: 10px; }
+      .next-btn { right: 10px; }
     }
 
     .watermark {
@@ -423,25 +461,25 @@
         </ul>
       </div>
 
-      <!-- GALERIA DE ARTES (Com clique para ampliar) -->
+      <!-- GALERIA DE ARTES (A passar com os índices 0, 1, 2) -->
       <div class="section-title theme-blue-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container">
+      <div class="artes-container" id="galeria-vivlos">
         
-        <div class="arte-card" onclick="openImageModal('imagens/vivlos/vivlos-uniform.png')">
+        <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 0)">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-uniform.png" alt="Uniforme">
           </div>
           <div class="arte-label">Uniforme</div>
         </div>
 
-        <div class="arte-card" onclick="openImageModal('imagens/vivlos/vivlos-racing.png')">
+        <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 1)">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-racing.png" alt="Corrida">
           </div>
           <div class="arte-label">Corrida</div>
         </div>
 
-        <div class="arte-card" onclick="openImageModal('imagens/vivlos/vivlos-concept.png')">
+        <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 2)">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-concept.png" alt="Arte Conceitual">
           </div>
@@ -453,10 +491,12 @@
     </div>
   </div>
 
-  <!-- MODAL DE VISUALIZAÇÃO EM TELA CHEIA -->
-  <div class="image-modal-overlay" id="imageModal" onclick="closeImageModal()">
+  <!-- MODAL DE VISUALIZAÇÃO EM TELA CHEIA (LIGHTBOX COM SETAS) -->
+  <div class="image-modal-overlay" id="imageModal" onclick="closeImageModalOnBg(event)">
     <button class="close-image-btn" onclick="closeImageModal()">✕</button>
+    <button class="nav-btn prev-btn" onclick="changeImage(-1)">❮</button>
     <img class="image-modal-content" id="expandedImg" alt="Arte Ampliada">
+    <button class="nav-btn next-btn" onclick="changeImage(1)">❯</button>
   </div>
 
   <div class="watermark">@Thiagobaoo</div>
@@ -492,17 +532,63 @@
       }
     }
 
-    // Abrir e Fechar Modal de Imagem Ampliada (Tela Cheia)
-    function openImageModal(imgSrc) {
-      let modal = document.getElementById('imageModal');
+    // NAVEGAÇÃO DA GALERIA EM TELA CHEIA (LIGHTBOX)
+    let currentGalleryImages = [];
+    let currentImageIndex = 0;
+
+    function openGalleryModal(galleryId, index) {
+      let container = document.getElementById(galleryId);
+      let imgs = container.getElementsByTagName('img');
+      
+      currentGalleryImages = [];
+      for (let i = 0; i < imgs.length; i++) {
+        currentGalleryImages.push(imgs[i].src);
+      }
+
+      currentImageIndex = index;
+      updateExpandedImage();
+
+      document.getElementById('imageModal').classList.add('active');
+    }
+
+    function updateExpandedImage() {
       let expandedImg = document.getElementById('expandedImg');
-      expandedImg.src = imgSrc;
-      modal.classList.add('active');
+      expandedImg.src = currentGalleryImages[currentImageIndex];
+    }
+
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      if (currentImageIndex < 0) {
+        currentImageIndex = currentGalleryImages.length - 1; // Volta para a última
+      } else if (currentImageIndex >= currentGalleryImages.length) {
+        currentImageIndex = 0; // Volta para a primeira
+      }
+      updateExpandedImage();
     }
 
     function closeImageModal() {
       document.getElementById('imageModal').classList.remove('active');
     }
+
+    function closeImageModalOnBg(event) {
+      if (event.target.classList.contains('image-modal-overlay')) {
+        closeImageModal();
+      }
+    }
+
+    // NAVEGAÇÃO PELO TECLADO (Setas esquerda/direita e tecla ESC)
+    document.addEventListener('keydown', function(event) {
+      let modal = document.getElementById('imageModal');
+      if (modal.classList.contains('active')) {
+        if (event.key === 'ArrowLeft') {
+          changeImage(-1);
+        } else if (event.key === 'ArrowRight') {
+          changeImage(1);
+        } else if (event.key === 'Escape') {
+          closeImageModal();
+        }
+      }
+    });
   </script>
 
 </body>
