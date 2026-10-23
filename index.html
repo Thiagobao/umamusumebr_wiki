@@ -122,7 +122,7 @@
       color: #665242;
     }
 
-    /* MODAL (JANELA DE FICHA COMPLETA) */
+    /* MODAL LARGURA EXPANDIDA */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -141,9 +141,9 @@
     .modal-content {
       background: var(--card-bg);
       border-radius: 20px;
-      padding: 20px;
-      max-width: 600px;
-      width: 100%;
+      padding: 25px;
+      max-width: 850px;
+      width: 95%;
       max-height: 90vh;
       overflow-y: auto;
       border: 4px solid #e2dec8;
@@ -164,6 +164,7 @@
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
+      z-index: 10;
     }
 
     .modal-header-banner {
@@ -214,9 +215,57 @@
       font-size: 0.88rem; 
     }
 
-    /* ==========================================
-       ESTILOS EXCLUSIVOS DO TEMA AZUL (VIVLOS)
-       ================================---------- */
+    /* GALERIA DE ARTES (3 COLUNAS) */
+    .artes-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .arte-card {
+      background: #fff;
+      border: 3px solid #d1cdb8;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .arte-img-box {
+      width: 100%;
+      height: 280px;
+      border: 2px solid #e2dec8;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fcfbf9;
+      margin-bottom: 10px;
+    }
+
+    .arte-img-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .arte-label {
+      width: 100%;
+      background: #fff;
+      border: 2px solid #d1cdb8;
+      border-radius: 8px;
+      padding: 8px 0;
+      font-weight: bold;
+      color: #4a2e18;
+      font-size: 1rem;
+    }
+
+    /* ESTILOS TEMA AZUL (VIVLOS) */
     .theme-blue:hover {
       border-color: #0284c7 !important;
     }
@@ -228,6 +277,13 @@
     }
     .theme-blue-section {
       background: #0284c7 !important;
+    }
+
+    /* Responsivo para celulares */
+    @media (max-width: 650px) {
+      .artes-container {
+        grid-template-columns: 1fr;
+      }
     }
 
     .watermark {
@@ -253,10 +309,10 @@
   <!-- LISTA DE CARDS MINIMIZADOS -->
   <div class="grid" id="characterGrid">
     
-    <!-- CARD MINI: VIVLOS (Com a classe theme-blue aplicada) -->
+    <!-- CARD MINI: VIVLOS -->
     <div class="card-mini theme-blue" data-name="vivlos ayasa itou" onclick="openModal('modal-vivlos')">
       <div class="avatar-frame">
-        <img src="imagens/vivlos_icon.png" alt="Vivlos">
+        <img src="imagens/vivlos/vivlos_icon.png" alt="Vivlos">
       </div>
       <div class="mini-info">
         <h3>Vivlos</h3>
@@ -272,7 +328,6 @@
     <div class="modal-content">
       <button class="close-btn" onclick="closeModal('modal-vivlos')">✕</button>
       
-      <!-- Banner com tema azul -->
       <div class="modal-header-banner theme-blue-banner">
         <span>Vivlos</span>
       </div>
@@ -305,6 +360,34 @@
           <li>Na vida real, Vivlos era conhecida por ser muito pequena em comparação com outras competidoras. Em sua vitória no Dubai Turf, ela pesava apenas cerca de 426 kg (éguas de elite costumam pesar entre 460 kg e 500 kg). Isso é refletido em seu design no jogo, sendo mais baixa que suas irmãs</li>
         </ul>
       </div>
+
+      <!-- GALERIA DE ARTES -->
+      <div class="section-title theme-blue-section"><span>Umamusume Artes</span></div>
+      <div class="artes-container">
+        
+        <div class="arte-card">
+          <div class="arte-img-box">
+            <img src="imagens/vivlos/vivlos-uniform.png" alt="Uniforme">
+          </div>
+          <div class="arte-label">Uniforme</div>
+        </div>
+
+        <div class="arte-card">
+          <div class="arte-img-box">
+            <img src="imagens/vivlos/vivlos-racing.png" alt="Corrida">
+          </div>
+          <div class="arte-label">Corrida</div>
+        </div>
+
+        <div class="arte-card">
+          <div class="arte-img-box">
+            <img src="imagens/vivlos/vivlos-concept.png" alt="Arte Conceitual">
+          </div>
+          <div class="arte-label">Arte Conceitual</div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
