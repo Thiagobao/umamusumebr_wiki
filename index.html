@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uma Musume BR Wiki - @Thiagobaoo</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Nunito:wght@700;800;900&display=swap');
 
     :root {
       --primary-green: #68bd28;
@@ -35,38 +35,89 @@
       min-height: 100vh;
     }
 
-    /* HEADER ESTILO RIBBON TRACEN ACADEMY */
-    header { 
-      text-align: center; 
-      margin: 0 auto 25px auto; 
-      max-width: 750px;
+    /* HEADER COM LOGO EM CSS PURO */
+    header {
+      text-align: center;
+      margin: 10px auto 30px auto;
+      user-select: none;
     }
 
-    .title-banner {
-      background: linear-gradient(135deg, #78cd2a 0%, #4f9419 100%);
-      color: white;
-      padding: 14px 25px;
-      border-radius: 18px;
-      border: 4px solid #ffffff;
-      box-shadow: 0 6px 0px rgba(0,0,0,0.12), 0 10px 20px rgba(0,0,0,0.1);
-      display: inline-block;
-      width: 100%;
+    .game-logo-wrapper {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      transform: skewX(-6deg);
     }
 
-    h1 { 
-      font-size: 2.2rem; 
+    /* PALAVRA SUPERIOR: UMAMUSUME */
+    .logo-main {
+      font-size: 3.2rem;
       font-weight: 900;
-      text-shadow: 2px 2px 0px #32610d;
-      letter-spacing: 0.5px;
+      letter-spacing: -1px;
+      line-height: 0.9;
+      background: linear-gradient(to bottom, #ffe600 0%, #ff8c00 45%, #e82a7a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: 
+        drop-shadow(2px 2px 0px #ffffff) 
+        drop-shadow(-2px -2px 0px #ffffff) 
+        drop-shadow(2px -2px 0px #ffffff) 
+        drop-shadow(-2px 2px 0px #ffffff)
+        drop-shadow(0px 6px 0px #921045)
+        drop-shadow(0px 10px 15px rgba(0,0,0,0.25));
     }
 
-    header p {
+    /* PALAVRA INFERIOR: BR WIKI */
+    .logo-sub {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: -6px;
+    }
+
+    .runner-icon {
+      font-size: 1.4rem;
+      font-style: normal;
+      filter: drop-shadow(0px 3px 0px #63187b);
+    }
+
+    .logo-sub-text {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(to bottom, #ffffff 0%, #e0a3ff 50%, #c0392b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: 
+        drop-shadow(1.5px 1.5px 0px #ffffff) 
+        drop-shadow(-1.5px -1.5px 0px #ffffff) 
+        drop-shadow(1.5px -1.5px 0px #ffffff) 
+        drop-shadow(-1.5px 1.5px 0px #ffffff)
+        drop-shadow(0px 4px 0px #5c116d);
+    }
+
+    .sparkle {
+      color: #ff3385;
+      font-size: 1.2rem;
+      font-style: normal;
+      animation: pulseSparkle 1.5s infinite alternate;
+    }
+
+    @keyframes pulseSparkle {
+      from { transform: scale(0.8); opacity: 0.7; }
+      to { transform: scale(1.2); opacity: 1; }
+    }
+
+    .subtitle {
       font-weight: 800;
       color: #7a604b;
-      margin-top: 10px;
+      margin-top: 15px;
       font-size: 0.95rem;
     }
-    
+
     /* BARRA DE PESQUISA ESTILO JOGO */
     .search-container {
       max-width: 600px;
@@ -461,7 +512,9 @@
     .prev-btn { left: 20px; }
     .next-btn { right: 20px; }
 
-    @media (max-width: 650px) {
+    @media (max-width: 600px) {
+      .logo-main { font-size: 2.2rem; }
+      .logo-sub-text { font-size: 1.3rem; }
       .artes-container, .artes-container-2 { grid-template-columns: 1fr; }
       .search-container { flex-direction: column; }
       .char-counter { width: 100%; text-align: center; }
@@ -479,10 +532,15 @@
 <body>
 
   <header>
-    <div class="title-banner">
-      <h1>Uma Musume BR Wiki 🇧🇷</h1>
+    <div class="game-logo-wrapper">
+      <div class="logo-main">UMAMUSUME</div>
+      <div class="logo-sub">
+        <span class="runner-icon">🏃‍♀️</span>
+        <span class="logo-sub-text">BR WIKI</span>
+        <span class="sparkle">✦</span>
+      </div>
     </div>
-    <p>Wiki e Banco de Dados Oficial de Personagens</p>
+    <p class="subtitle">Wiki e Banco de Dados Oficial de Personagens</p>
   </header>
 
   <div class="search-container">
@@ -779,7 +837,7 @@
           <li>Ela é ótima em carregar as pessoas nas costas. Quem ela carrega acaba dormindo rapidinho</li>
           <li>Ao contrário da maioria das Umamusume, que adotam muitas das peculiaridades e qualidades dos cavalos nos quais se baseiam, a Special Week difere drasticamente da Spe da vida real, possivelmente devido ao fato de que a Spe é considerada o mascote da franquia, e tais mudanças tiveram que ser feitas para torná-la mais comercializável</li>
           <li>Enquanto ela é retratada como uma garota otimista, idealista, ingênua e boba do campo, que é amigável com outras Umamusume e faz um esforço para manter amizades entre si, a Spe da vida real era uma solitária que era indiferente à sua própria espécie, amigável apenas com os humanos</li>
-          <li>A Spe considera Silence Suzuka um modelo a ser seguido. Na vida real, porém, os dois cavalos nunca se conheceram durante a vida. Suas interações foram baseadas no fato de seus colegas da vida real terem sido montados por Yutaka Take, e possivelmente pelo motivo de ambos terem sido gerados por Sunday Silence, embora cavalos que compartilham apenas um pai não sejam considerados irmãos</li>
+          <li>A Spe considers Silence Suzuka um modelo a ser seguido. Na vida real, porém, os dois cavalos nunca se conheceram durante a vida. Suas interações foram baseadas no fato de seus colegas da vida real terem sido montados por Yutaka Take, e possivelmente pelo motivo de ambos terem sido gerados por Sunday Silence, embora cavalos que compartilham apenas um pai não sejam considerados irmãos</li>
           <li>Os acessórios dourados de trevo de quatro folhas em sua roupa de corrida fazem referência às quatro vitórias de sua contraparte na vida real no G1</li>
           <li>O mesmo acessório é presente nas Umamusume que são descendentes da Spe, como Cesario, Buena Vista, e Epiphaneia</li>
         </ul>
