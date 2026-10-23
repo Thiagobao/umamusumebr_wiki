@@ -239,7 +239,6 @@
 
     .arte-card:hover {
       transform: translateY(-4px);
-      border-color: #0284c7;
     }
 
     .arte-img-box {
@@ -270,13 +269,7 @@
       font-weight: bold;
       color: #4a2e18;
       font-size: 1rem;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .arte-card:hover .arte-label {
-      background: #0284c7;
-      color: #fff;
-      border-color: #0284c7;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
 
     /* MODAL DE VISUALIZAÇÃO EM TELA CHEIA (LIGHTBOX COM SETAS) */
@@ -324,7 +317,6 @@
       z-index: 2010;
     }
 
-    /* BOTÕES DE NAVEGAÇÃO (SETAS) */
     .nav-btn {
       position: absolute;
       top: 50%;
@@ -359,18 +351,20 @@
     }
 
     /* ESTILOS TEMA AZUL (VIVLOS) */
-    .theme-blue:hover {
-      border-color: #0284c7 !important;
-    }
-    .theme-blue .text-accent {
-      color: #0284c7 !important;
-    }
-    .theme-blue-banner {
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-    }
-    .theme-blue-section {
-      background: #0284c7 !important;
-    }
+    .theme-blue:hover { border-color: #0284c7 !important; }
+    .theme-blue .text-accent { color: #0284c7 !important; }
+    .theme-blue-banner { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important; }
+    .theme-blue-section { background: #0284c7 !important; }
+    .theme-blue-gallery .arte-card:hover { border-color: #0284c7 !important; }
+    .theme-blue-gallery .arte-card:hover .arte-label { background: #0284c7 !important; color: #fff !important; border-color: #0284c7 !important; }
+
+    /* ESTILOS TEMA CIANO (CHEVAL GRAND) */
+    .theme-cyan:hover { border-color: #0ea5e9 !important; }
+    .theme-cyan .text-accent { color: #0ea5e9 !important; }
+    .theme-cyan-banner { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%) !important; }
+    .theme-cyan-section { background: #0ea5e9 !important; }
+    .theme-cyan-gallery .arte-card:hover { border-color: #0ea5e9 !important; }
+    .theme-cyan-gallery .arte-card:hover .arte-label { background: #0ea5e9 !important; color: #fff !important; border-color: #0ea5e9 !important; }
 
     /* Responsivo para telemóveis */
     @media (max-width: 650px) {
@@ -421,6 +415,18 @@
       </div>
     </div>
 
+    <!-- CARD MINI: CHEVAL GRAND -->
+    <div class="card-mini theme-cyan" data-name="cheval grand yuko natsuyoshi" onclick="openModal('modal-cheval')">
+      <div class="avatar-frame">
+        <img src="imagens/cheval/cheval-grand-icon.png" alt="Cheval Grand">
+      </div>
+      <div class="mini-info">
+        <h3>Cheval Grand</h3>
+        <p><b>Dubladora:</b> Yuko Natsuyoshi</p>
+        <p class="text-accent" style="font-size:0.75rem;">Clique para ver mais ➔</p>
+      </div>
+    </div>
+
   </div>
 
   <!-- MODAL DE DETALHES: VIVLOS -->
@@ -461,9 +467,9 @@
         </ul>
       </div>
 
-      <!-- GALERIA DE ARTES (A passar com os índices 0, 1, 2) -->
+      <!-- GALERIA DE ARTES -->
       <div class="section-title theme-blue-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container" id="galeria-vivlos">
+      <div class="artes-container theme-blue-gallery" id="galeria-vivlos">
         
         <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 0)">
           <div class="arte-img-box">
@@ -482,6 +488,73 @@
         <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 2)">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-concept.png" alt="Arte Conceitual">
+          </div>
+          <div class="arte-label">Arte Conceitual</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL DE DETALHES: CHEVAL GRAND -->
+  <div class="modal-overlay" id="modal-cheval" onclick="closeModalOnBg(event, 'modal-cheval')">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal-cheval')">✕</button>
+      
+      <div class="modal-header-banner theme-cyan-banner">
+        <span>Cheval Grand</span>
+      </div>
+      
+      <div class="info-group"><b>Dubladora:</b> Yuko Natsuyoshi</div>
+      <div class="info-group"><b>Aniversário:</b> 14 de Março</div>
+      <div class="info-group"><b>Altura:</b> 160 cm | <b>Peso:</b> Estável</div>
+      <div class="info-group"><b>Tamanho do pé:</b> 24 cm</div>
+      <div class="info-group"><b>Colega de Quarto:</b> Win Variation</div>
+      <div class="info-group"><b>Escolaridade:</b> 7º Ano do ensino fundamental</div>
+      <div class="info-group" style="margin-top: 10px; font-style: italic; color: #555;"><b>Introdução:</b> "...Cheval Grand... Sabe... Eu sei que pode parecer um pouco exagerado, mas... Um dia, vou dar o meu melhor para ser a maior... Não, eu serei a maior de todas"</div>
+      
+      <div class="section-title theme-cyan-section"><span>Medidas</span></div>
+      <div class="info-group"><b>Busto:</b> 85 | <b>Cintura:</b> 56 | <b>Quadril:</b> 80</div>
+
+      <div class="section-title theme-cyan-section"><span>Perfil e Habilidades</span></div>
+      <div class="info-group"><b>Ponto Forte:</b> Pesca em alto-mar, beisebol, passar tempo sozinha</div>
+      <div class="info-group"><b>Ponto Fraco:</b> Se apresentar, controle de peso</div>
+      <div class="info-group"><b>Cauda:</b> Sua irmã costumava trançar o rabo dela sem a sua permissão</div>
+      <div class="info-group"><b>Orelhas:</b> Quando está sozinha, ela tira o chapéu e deixa as orelhas tremularem ao vento</div>
+
+      <div class="curiosidades">
+        <b class="text-accent">Curiosidades:</b>
+        <ul>
+          <li>Ela gosta de assistir vídeos de pesca</li>
+          <li>Ela prefere mochi salgado em contraste com suas irmãs que gostam de mochi doce</li>
+          <li>Seu amor pelo beisebol é uma referência ao Cheval Grand da vida real, no qual seu dono, Kazuhiro Sasaki, é um ex-arremessador substituto profissional de beisebol</li>
+          <li>Em sua história de carreira, ela tem uma amiga de infância chamada Shine Praise que vai para a Austrália durante seu último ano, mas se machuca enquanto está lá. Esta Umamusume é uma referência ao verdadeiro cavalo Admire Deus, que era um ano mais velho que Cheval Grand e correu com ele no Hanshin Daishoten. Em 2017, ele foi transferido para a Austrália, onde sofreu uma lesão catastrófica e faleceu em 25 de novembro de 2017.</li>
+          <li>Ela admira uma certa Umamusume que derrotou uma vencedora invicta da Tríplice Coroa no Arima Kinen e a vê como uma competidora que superou as expectativas (uma "underdog"). Por outro lado, suas irmãs admiram a Umamusume da Tríplice Coroa que é vista como uma "heroína". A Umamusume que Cheval admira é baseada em Heart's Cry, um cavalo que derrotou Deep Impact (o vencedor invicto da Tríplice Coroa de 2005) no Arima Kinen daquele mesmo ano. Heart's Cry é o pai de Cheval Grand, enquanto Deep Impact é o pai tanto de Verxina quanto de Vivlos</li>
+        </ul>
+      </div>
+
+      <!-- GALERIA DE ARTES -->
+      <div class="section-title theme-cyan-section"><span>Umamusume Artes</span></div>
+      <div class="artes-container theme-cyan-gallery" id="galeria-cheval">
+        
+        <div class="arte-card" onclick="openGalleryModal('galeria-cheval', 0)">
+          <div class="arte-img-box">
+            <img src="imagens/cheval/cheval-grand-uniform.png" alt="Uniforme">
+          </div>
+          <div class="arte-label">Uniforme</div>
+        </div>
+
+        <div class="arte-card" onclick="openGalleryModal('galeria-cheval', 1)">
+          <div class="arte-img-box">
+            <img src="imagens/cheval/cheval-grand-racing.png" alt="Corrida">
+          </div>
+          <div class="arte-label">Corrida</div>
+        </div>
+
+        <div class="arte-card" onclick="openGalleryModal('galeria-cheval', 2)">
+          <div class="arte-img-box">
+            <img src="imagens/cheval/cheval-grand-concept.png" alt="Arte Conceitual">
           </div>
           <div class="arte-label">Arte Conceitual</div>
         </div>
@@ -559,9 +632,9 @@
     function changeImage(direction) {
       currentImageIndex += direction;
       if (currentImageIndex < 0) {
-        currentImageIndex = currentGalleryImages.length - 1; // Volta para a última
+        currentImageIndex = currentGalleryImages.length - 1;
       } else if (currentImageIndex >= currentGalleryImages.length) {
-        currentImageIndex = 0; // Volta para a primeira
+        currentImageIndex = 0;
       }
       updateExpandedImage();
     }
@@ -576,7 +649,7 @@
       }
     }
 
-    // NAVEGAÇÃO PELO TECLADO (Setas esquerda/direita e tecla ESC)
+    // NAVEGAÇÃO PELO TECLADO
     document.addEventListener('keydown', function(event) {
       let modal = document.getElementById('imageModal');
       if (modal.classList.contains('active')) {
