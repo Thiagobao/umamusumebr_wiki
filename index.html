@@ -233,6 +233,13 @@
       flex-direction: column;
       align-items: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .arte-card:hover {
+      transform: translateY(-4px);
+      border-color: #0284c7;
     }
 
     .arte-img-box {
@@ -263,6 +270,59 @@
       font-weight: bold;
       color: #4a2e18;
       font-size: 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .arte-card:hover .arte-label {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+    }
+
+    /* MODAL DE VISUALIZAÇÃO EM TELA CHEIA (LIGHTBOX) */
+    .image-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000; /* Fica acima de tudo */
+      padding: 20px;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .image-modal-overlay.active {
+      display: flex;
+    }
+
+    .image-modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .close-image-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     /* ESTILOS TEMA AZUL (VIVLOS) */
@@ -361,25 +421,25 @@
         </ul>
       </div>
 
-      <!-- GALERIA DE ARTES -->
+      <!-- GALERIA DE ARTES (Com clique para ampliar) -->
       <div class="section-title theme-blue-section"><span>Umamusume Artes</span></div>
       <div class="artes-container">
         
-        <div class="arte-card">
+        <div class="arte-card" onclick="openImageModal('imagens/vivlos/vivlos-uniform.png')">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-uniform.png" alt="Uniforme">
           </div>
           <div class="arte-label">Uniforme</div>
         </div>
 
-        <div class="arte-card">
+        <div class="arte-card" onclick="openImageModal('imagens/vivlos/vivlos-racing.png')">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-racing.png" alt="Corrida">
           </div>
           <div class="arte-label">Corrida</div>
         </div>
 
-        <div class="arte-card">
+        <div class="arte-card" onclick="openImageModal('imagens/vivlos/vivlos-concept.png')">
           <div class="arte-img-box">
             <img src="imagens/vivlos/vivlos-concept.png" alt="Arte Conceitual">
           </div>
@@ -389,6 +449,12 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- MODAL DE VISUALIZAÇÃO EM TELA CHEIA -->
+  <div class="image-modal-overlay" id="imageModal" onclick="closeImageModal()">
+    <button class="close-image-btn" onclick="closeImageModal()">✕</button>
+    <img class="image-modal-content" id="expandedImg" alt="Arte Ampliada">
   </div>
 
   <div class="watermark">@Thiagobaoo</div>
@@ -409,7 +475,7 @@
       }
     }
 
-    // Abrir e Fechar Modal
+    // Abrir e Fechar Modal Principal
     function openModal(id) {
       document.getElementById(id).classList.add('active');
     }
@@ -422,6 +488,18 @@
       if (event.target.classList.contains('modal-overlay')) {
         closeModal(id);
       }
+    }
+
+    // Abrir e Fechar Modal de Imagem Ampliada (Tela Cheia)
+    function openImageModal(imgSrc) {
+      let modal = document.getElementById('imageModal');
+      let expandedImg = document.getElementById('expandedImg');
+      expandedImg.src = imgSrc;
+      modal.classList.add('active');
+    }
+
+    function closeImageModal() {
+      document.getElementById('imageModal').classList.remove('active');
     }
   </script>
 
