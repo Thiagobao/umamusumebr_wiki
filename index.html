@@ -23,7 +23,6 @@
 
     body { 
       background-color: var(--bg-color); 
-      /* Fundo com padrão sutil inspirado no jogo */
       background-image: 
         radial-gradient(var(--border-color) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(113, 184, 39, 0.15) 0%, rgba(237, 236, 232, 0.9) 250px);
@@ -69,72 +68,141 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.08);
     }
 
+    /* GRID DE CARDS MINIATURA */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 15px;
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .card {
+    .card-mini {
       background: var(--card-bg);
       border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      padding: 12px 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       border: 3px solid #e2dec8;
-      transition: transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
     }
     
-    .card:hover { 
-      transform: translateY(-4px); 
+    .card-mini:hover { 
+      transform: translateY(-3px); 
+      border-color: var(--primary-green);
     }
 
-    /* Cabeçalho estilo banner com barras do jogo */
-    .card-header {
+    /* Moldura circular da foto */
+    .avatar-frame {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      border: 3px solid #dcd7c5;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      overflow: hidden;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .avatar-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mini-info h3 {
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+
+    .mini-info p {
+      font-size: 0.85rem;
+      color: #665242;
+    }
+
+    /* MODAL (JANELA DE FICHA COMPLETA) */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 4px solid #e2dec8;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .modal-header-banner {
       background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
       color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 1.25rem;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
-      position: relative;
-      overflow: hidden;
     }
 
-    /* Barras diagonais no canto (estilo UI do jogo) */
-    .card-header::after {
+    .modal-header-banner::after {
       content: "//";
       font-family: monospace;
-      font-size: 1.4rem;
-      letter-spacing: -2px;
       opacity: 0.7;
     }
 
     .info-group { 
       margin-bottom: 8px; 
       font-size: 0.95rem; 
-      color: var(--text-color);
     }
     
     .info-group b { 
       color: #2b1a0e; 
     }
 
-    /* Subcabeçalhos internos com barra lateral */
     .section-title {
-      background: #71b827;
+      background: var(--primary-green);
       color: white;
       font-size: 0.9rem;
       font-weight: bold;
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: 4px;
-      margin: 12px 0 8px 0;
+      margin: 14px 0 8px 0;
       display: flex;
       justify-content: space-between;
     }
@@ -158,10 +226,6 @@
       margin-top: 5px; 
       font-size: 0.88rem; 
     }
-    
-    .curiosidades li { 
-      margin-bottom: 6px; 
-    }
 
     .watermark {
       text-align: center;
@@ -183,11 +247,30 @@
     <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Pesquisar personagem por nome, dubladora, etc...">
   </div>
 
+  <!-- LISTA DE CARDS MINIMIZADOS -->
   <div class="grid" id="characterGrid">
     
-    <!-- CARD: VIVLOS -->
-    <div class="card" data-name="vivlos ayasa itou">
-      <div class="card-header">
+    <!-- CARD MINI: VIVLOS -->
+    <div class="card-mini" data-name="vivlos ayasa itou" onclick="openModal('modal-vivlos')">
+      <div class="avatar-frame">
+        <!-- Foto de perfil da Vivlos (URL direta ou imagem local) -->
+        <img src="https://i.imgur.com/8QeA4z2.png" alt="Vivlos" onerror="this.src='https://via.placeholder.com/65?text=Uma'">
+      </div>
+      <div class="mini-info">
+        <h3>Vivlos</h3>
+        <p><b>Dubladora:</b> Ayasa Itou</p>
+        <p style="font-size:0.75rem; color:#71b827;">Clique para ver mais ➔</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL DE DETALHES: VIVLOS -->
+  <div class="modal-overlay" id="modal-vivlos" onclick="closeModalOnBg(event, 'modal-vivlos')">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal-vivlos')">✕</button>
+      
+      <div class="modal-header-banner">
         <span>Vivlos</span>
       </div>
       
@@ -198,14 +281,10 @@
       <div class="info-group"><b>Colega de Quarto:</b> Air Messiah</div>
       <div class="info-group"><b>Escolaridade:</b> 7º Ano do ensino fundamental</div>
       
-      <div class="section-title">
-        <span>Medidas</span>
-      </div>
+      <div class="section-title"><span>Medidas</span></div>
       <div class="info-group"><b>Busto:</b> 81 | <b>Cintura:</b> 51 | <b>Quadril:</b> 86</div>
 
-      <div class="section-title">
-        <span>Perfil e Habilidades</span>
-      </div>
+      <div class="section-title"><span>Perfil e Habilidades</span></div>
       <div class="info-group"><b>Ponto Forte:</b> Lidar com o frio, beisebol, sonhar acordado em ser uma celebridade</div>
       <div class="info-group"><b>Ponto Fraco:</b> Ruídos distrativos, limpeza</div>
 
@@ -219,23 +298,38 @@
         </ul>
       </div>
     </div>
-
   </div>
 
   <div class="watermark">@Thiagobaoo</div>
 
   <script>
+    // Filtro de pesquisa
     function filterCards() {
       let input = document.getElementById('searchInput').value.toLowerCase();
-      let cards = document.getElementsByClassName('card');
+      let cards = document.getElementsByClassName('card-mini');
 
       for (let i = 0; i < cards.length; i++) {
         let name = cards[i].getAttribute('data-name');
         if (name.includes(input)) {
-          cards[i].style.display = "block";
+          cards[i].style.display = "flex";
         } else {
           cards[i].style.display = "none";
         }
+      }
+    }
+
+    // Abrir e Fechar Modal
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function closeModalOnBg(event, id) {
+      if (event.target.classList.contains('modal-overlay')) {
+        closeModal(id);
       }
     }
   </script>
