@@ -58,9 +58,6 @@
       font-weight: 900;
       letter-spacing: -1px;
       line-height: 0.9;
-      background: linear-gradient(to bottom, #ffe600 0%, #ff8c00 45%, #e82a7a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       filter: 
         drop-shadow(2px 2px 0px #ffffff) 
         drop-shadow(-2px -2px 0px #ffffff) 
@@ -70,27 +67,30 @@
         drop-shadow(0px 10px 15px rgba(0,0,0,0.25));
     }
 
+    .logo-uma {
+      background: linear-gradient(to bottom, #ffe600 0%, #ff8c00 45%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo-musume {
+      background: linear-gradient(to bottom, #ffa3ca 0%, #f43f5e 50%, #d946ef 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     /* PALAVRA INFERIOR: BR WIKI */
     .logo-sub {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-top: -6px;
-    }
-
-    .runner-icon {
-      font-size: 1.4rem;
-      font-style: normal;
-      filter: drop-shadow(0px 3px 0px #63187b);
+      gap: 6px;
+      margin-top: -4px;
     }
 
     .logo-sub-text {
       font-size: 1.8rem;
       font-weight: 900;
       letter-spacing: 2px;
-      background: linear-gradient(to bottom, #ffffff 0%, #e0a3ff 50%, #c0392b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       filter: 
         drop-shadow(1.5px 1.5px 0px #ffffff) 
         drop-shadow(-1.5px -1.5px 0px #ffffff) 
@@ -99,16 +99,22 @@
         drop-shadow(0px 4px 0px #5c116d);
     }
 
-    .sparkle {
-      color: #ff3385;
-      font-size: 1.2rem;
-      font-style: normal;
-      animation: pulseSparkle 1.5s infinite alternate;
+    .letter-b {
+      background: linear-gradient(to bottom, #a3e635 0%, #65a30d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    @keyframes pulseSparkle {
-      from { transform: scale(0.8); opacity: 0.7; }
-      to { transform: scale(1.2); opacity: 1; }
+    .letter-r {
+      background: linear-gradient(to bottom, #fde047 0%, #ca8a04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-wiki {
+      background: linear-gradient(to bottom, #ffffff 0%, #e0a3ff 50%, #c0392b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .subtitle {
@@ -533,11 +539,13 @@
 
   <header>
     <div class="game-logo-wrapper">
-      <div class="logo-main">UMAMUSUME</div>
+      <div class="logo-main">
+        <span class="logo-uma">UMA</span><span class="logo-musume">MUSUME</span>
+      </div>
       <div class="logo-sub">
-        <span class="runner-icon">🇧🇷</span>
-        <span class="logo-sub-text">BR WIKI</span>
-        <span class="sparkle">✦</span>
+        <span class="logo-sub-text">
+          <span class="letter-b">B</span><span class="letter-r">R</span> <span class="text-wiki">WIKI</span>
+        </span>
       </div>
     </div>
     <p class="subtitle">Wiki e Banco de Dados Oficial de Personagens</p>
