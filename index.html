@@ -6,34 +6,72 @@
   <title>Uma Musume BR Wiki - @Thiagobaoo</title>
   <style>
     :root {
-      --primary: #0284c7;
-      --bg: #e0f2fe;
-      --card-bg: #ffffff;
-      --text: #1e3a8a;
-      --accent: #38bdf8;
+      --primary-green: #71b827;
+      --primary-dark: #58961c;
+      --bg-color: #edece8;
+      --card-bg: #f9f8f5;
+      --text-color: #3e2817;
+      --border-color: #d1cdb8;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding: 20px; }
-    header { text-align: center; margin-bottom: 25px; }
-    h1 { color: var(--primary); font-size: 2rem; margin-bottom: 10px; }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Segoe UI', Arial, sans-serif; 
+    }
+
+    body { 
+      background-color: var(--bg-color); 
+      /* Fundo com padrão sutil inspirado no jogo */
+      background-image: 
+        radial-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(113, 184, 39, 0.15) 0%, rgba(237, 236, 232, 0.9) 250px);
+      background-size: 16px 16px, 100% 100%;
+      color: var(--text-color); 
+      padding: 20px; 
+      min-height: 100vh;
+    }
+
+    header { 
+      text-align: center; 
+      margin-bottom: 25px; 
+    }
+
+    h1 { 
+      color: var(--text-color); 
+      font-size: 2.2rem; 
+      font-weight: 800;
+      text-shadow: 1px 1px 0px #fff;
+      margin-bottom: 5px; 
+    }
+
+    header p {
+      font-weight: 600;
+      color: #665242;
+    }
     
     .search-box {
       max-width: 500px;
       margin: 0 auto 30px auto;
     }
+
     .search-box input {
       width: 100%;
       padding: 12px 20px;
       font-size: 1rem;
-      border: 2px solid var(--accent);
+      font-weight: bold;
+      color: var(--text-color);
+      background: #fff;
+      border: 3px solid var(--primary-green);
       border-radius: 25px;
       outline: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 20px;
       max-width: 1100px;
       margin: 0 auto;
@@ -42,45 +80,95 @@
     .card {
       background: var(--card-bg);
       border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.08);
-      border: 2px solid #bae6fd;
+      padding: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border: 3px solid #e2dec8;
       transition: transform 0.2s;
     }
-    .card:hover { transform: translateY(-5px); }
+    
+    .card:hover { 
+      transform: translateY(-4px); 
+    }
 
+    /* Cabeçalho estilo banner com barras do jogo */
     .card-header {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
       color: white;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-size: 1.2rem;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 1.25rem;
       font-weight: bold;
       margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    .info-group { margin-bottom: 10px; font-size: 0.95rem; }
-    .info-group b { color: #0369a1; }
+    /* Barras diagonais no canto (estilo UI do jogo) */
+    .card-header::after {
+      content: "//";
+      font-family: monospace;
+      font-size: 1.4rem;
+      letter-spacing: -2px;
+      opacity: 0.7;
+    }
+
+    .info-group { 
+      margin-bottom: 8px; 
+      font-size: 0.95rem; 
+      color: var(--text-color);
+    }
+    
+    .info-group b { 
+      color: #2b1a0e; 
+    }
+
+    /* Subcabeçalhos internos com barra lateral */
+    .section-title {
+      background: #71b827;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin: 12px 0 8px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .section-title::after {
+      content: "//";
+      font-family: monospace;
+      opacity: 0.8;
+    }
 
     .curiosidades {
-      background: #f0f9ff;
+      background: #ffffff;
       padding: 12px;
       border-radius: 8px;
-      margin-top: 15px;
-      border-left: 4px solid var(--accent);
+      margin-top: 10px;
+      border: 2px solid var(--border-color);
     }
-    .curiosidades ul { padding-left: 18px; margin-top: 5px; font-size: 0.88rem; }
-    .curiosidades li { margin-bottom: 5px; }
+    
+    .curiosidades ul { 
+      padding-left: 18px; 
+      margin-top: 5px; 
+      font-size: 0.88rem; 
+    }
+    
+    .curiosidades li { 
+      margin-bottom: 6px; 
+    }
 
     .watermark {
       text-align: center;
       margin-top: 40px;
       font-weight: bold;
-      color: #0284c7;
-      opacity: 0.8;
+      color: #71b827;
+      text-shadow: 1px 1px 0 #fff;
     }
   </style>
 </head>
@@ -101,7 +189,6 @@
     <div class="card" data-name="vivlos ayasa itou">
       <div class="card-header">
         <span>Vivlos</span>
-        <span style="font-size: 0.8rem; font-weight: normal;">7º Ano</span>
       </div>
       
       <div class="info-group"><b>Dubladora:</b> Ayasa Itou</div>
@@ -109,20 +196,26 @@
       <div class="info-group"><b>Altura:</b> 156 cm | <b>Peso:</b> Estável</div>
       <div class="info-group"><b>Tamanho do pé:</b> 22 cm</div>
       <div class="info-group"><b>Colega de Quarto:</b> Air Messiah</div>
+      <div class="info-group"><b>Escolaridade:</b> 7º Ano do ensino fundamental</div>
       
-      <hr style="margin: 12px 0; border: none; border-top: 1px solid #e0f2fe;">
+      <div class="section-title">
+        <span>Medidas</span>
+      </div>
+      <div class="info-group"><b>Busto:</b> 81 | <b>Cintura:</b> 51 | <b>Quadril:</b> 86</div>
 
-      <div class="info-group"><b>Medidas:</b> Busto 81 | Cintura 51 | Quadril 86</div>
+      <div class="section-title">
+        <span>Perfil e Habilidades</span>
+      </div>
       <div class="info-group"><b>Ponto Forte:</b> Lidar com o frio, beisebol, sonhar acordado em ser uma celebridade</div>
-      <div class="info-group"><b>Ponto Fraco:</b> Ruído distrativos, limpeza</div>
+      <div class="info-group"><b>Ponto Fraco:</b> Ruídos distrativos, limpeza</div>
 
       <div class="curiosidades">
-        <b>Curiosidades:</b>
+        <b style="color: #71b827;">Curiosidades:</b>
         <ul>
           <li>Chama o treinador de "Torecchi".</li>
           <li>Usa cerca de 20 variações diferentes de "Por favor ♡".</li>
           <li>Na vida real, ganhou a Dubai Turf (G1) em 2017.</li>
-          <li>Pertencia a Kazuhiro Sasaki (ex-jogador da MLB).</li>
+          <li>Pertencia a Kazuhiro Sasaki (ex-jogador profissional da MLB).</li>
         </ul>
       </div>
     </div>
