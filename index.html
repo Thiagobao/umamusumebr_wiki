@@ -366,6 +366,22 @@
     .theme-cyan-gallery .arte-card:hover { border-color: #0ea5e9 !important; }
     .theme-cyan-gallery .arte-card:hover .arte-label { background: #0ea5e9 !important; color: #fff !important; border-color: #0ea5e9 !important; }
 
+    /* ESTILOS TEMA ÍNDIGO (VERXINA) */
+    .theme-indigo:hover { border-color: #312e81 !important; }
+    .theme-indigo .text-accent { color: #312e81 !important; }
+    .theme-indigo-banner { background: linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%) !important; }
+    .theme-indigo-section { background: #312e81 !important; }
+    .theme-indigo-gallery .arte-card:hover { border-color: #312e81 !important; }
+    .theme-indigo-gallery .arte-card:hover .arte-label { background: #312e81 !important; color: #fff !important; border-color: #312e81 !important; }
+    
+    /* Classe para galerias de 2 colunas */
+    .artes-container-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 10px;
+    }
+
     /* Responsivo para telemóveis */
     @media (max-width: 650px) {
       .artes-container {
@@ -423,6 +439,18 @@
       <div class="mini-info">
         <h3>Cheval Grand</h3>
         <p><b>Dubladora:</b> Yuko Natsuyoshi</p>
+        <p class="text-accent" style="font-size:0.75rem;">Clique para ver mais ➔</p>
+      </div>
+    </div>
+
+    <!-- CARD MINI: VERXINA -->
+    <div class="card-mini theme-indigo" data-name="verxina kaya okuno" onclick="openModal('modal-verxina')">
+      <div class="avatar-frame">
+        <img src="imagens/verxina/verxina-icon.png" alt="Verxina">
+      </div>
+      <div class="mini-info">
+        <h3>Verxina</h3>
+        <p><b>Dubladora:</b> Kaya Okuno</p>
         <p class="text-accent" style="font-size:0.75rem;">Clique para ver mais ➔</p>
       </div>
     </div>
@@ -560,6 +588,67 @@
             <img src="imagens/cheval/cheval-grand-concept.png" alt="Arte Conceitual">
           </div>
           <div class="arte-label">Arte Conceitual</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL DE DETALHES: VERXINA -->
+  <div class="modal-overlay" id="modal-verxina" onclick="closeModalOnBg(event, 'modal-verxina')">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal-verxina')">✕</button>
+      
+      <div class="modal-header-banner theme-indigo-banner">
+        <span>Verxina</span>
+      </div>
+
+      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "Eu sou Verxina. Recuso-me a desistir até conquistar tudo e me tornar rainha"</div>
+      
+      <div class="info-group"><b>Dubladora:</b> Kaya Okuno</div>
+      <div class="info-group"><b>Aniversário:</b> 5 de Março</div>
+      <div class="info-group"><b>Altura:</b> 158 cm | <b>Peso:</b> Na medida</div>
+      <div class="info-group"><b>Tamanho do pé:</b> 23 cm</div>
+      <div class="info-group"><b>Colega de Quarto:</b> Hokko Tarumae</div>
+      <div class="info-group"><b>Escolaridade:</b> 9º Ano do ensino fundamental</div>
+      
+      <div class="section-title theme-indigo-section"><span>Medidas</span></div>
+      <div class="info-group"><b>Busto:</b> 83 | <b>Cintura:</b> 53 | <b>Quadril:</b> 78</div>
+
+      <div class="section-title theme-indigo-section"><span>Perfil e Habilidades</span></div>
+      <div class="info-group"><b>Ponto Forte:</b> Kickboxing, beisebol, cambalhotas para trás</div>
+      <div class="info-group"><b>Ponto Fraco:</b> Drageias prateadas, ovos cozidos</div>
+      <div class="info-group"><b>Orelhas:</b> Consegue identificar qual membro da família lançou a bola apenas pelo som dela sendo apanhada</div>
+      <div class="info-group"><b>Cauda:</b> Quando ela era mais jovem, sua mãe costumava escovar seus cabelos para ela</div>
+
+      <div class="curiosidades">
+        <b class="text-accent">Curiosidades:</b>
+        <ul>
+          <li>Em 2012, Verxina ficou em 2º lugar em todas as três corridas da Tríplice Coroa Feminina (Oka Sho, Yushun Himba e Shuka Sho), perdendo todas para Gentildonna por margens minúsculas</li>
+          <li>Apesar da fama de vice, ela provou sua força ao vencer o Victoria Mile duas vezes consecutivas (2013 e 2014). Ela foi a primeira égua da história a conseguir o bicampeonato nessa prova</li>
+          <li>Ela pertencia a Kazuhiro Sasaki, um ex-jogador de beisebol profissional (MLB/NPB) extremamente famoso. Isso explica por que a personagem no jogo tem um ar de "celebridade" e riqueza</li>
+          <li>No jogo sua personalidade é moldada pela rivalidade com Gentildonna. Ela é extremamente dedicada e perfeccionista, agindo com uma elegância quase fria para esconder a frustração de sempre chegar um passo atrás da sua rival</li>
+          <li>Suas cores (branco, azul) são uma referência direta às cores da farda (silk) de Kazuhiro Sasaki. O estilo "ojousama" (moça rica) combina com o status do seu dono na vida real</li>
+        </ul>
+      </div>
+
+      <!-- GALERIA DE ARTES (2 COLUNAS) -->
+      <div class="section-title theme-indigo-section"><span>Umamusume Artes</span></div>
+      <div class="artes-container-2 theme-indigo-gallery" id="galeria-verxina">
+        
+        <div class="arte-card" onclick="openGalleryModal('galeria-verxina', 0)">
+          <div class="arte-img-box">
+            <img src="imagens/verxina/verxina-uniform.png" alt="Uniforme">
+          </div>
+          <div class="arte-label">Uniforme</div>
+        </div>
+
+        <div class="arte-card" onclick="openGalleryModal('galeria-verxina', 1)">
+          <div class="arte-img-box">
+            <img src="imagens/verxina/verxina-racing.png" alt="Corrida">
+          </div>
+          <div class="arte-label">Corrida</div>
         </div>
 
       </div>
