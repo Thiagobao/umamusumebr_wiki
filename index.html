@@ -30,95 +30,46 @@
       color: var(--text-color); 
       padding: 20px; 
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    /* HEADER COM LOGO EM CSS PURO */
+    /* HEADER COM LOGO.PNG */
     header {
       text-align: center;
-      margin: 10px auto 30px auto;
+      margin: 10px auto 20px auto;
       user-select: none;
-    }
-
-    .game-logo-wrapper {
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      font-family: 'Montserrat', sans-serif;
-      font-style: italic;
-      transform: skewX(-6deg);
     }
 
-    /* PALAVRA SUPERIOR: UMAMUSUME */
-    .logo-main {
-      font-size: 3.2rem;
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 0.9;
-      filter: 
-        drop-shadow(2px 2px 0px #ffffff) 
-        drop-shadow(-2px -2px 0px #ffffff) 
-        drop-shadow(2px -2px 0px #ffffff) 
-        drop-shadow(-2px 2px 0px #ffffff)
-        drop-shadow(0px 6px 0px #921045)
-        drop-shadow(0px 10px 15px rgba(0,0,0,0.25));
+    .site-logo {
+      max-width: 420px;
+      width: 88%;
+      height: auto;
+      filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.25));
+      transition: transform 0.2s ease;
     }
 
-    .logo-uma {
-      background: linear-gradient(to bottom, #ffe600 0%, #ff8c00 45%, #f43f5e 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .site-logo:hover {
+      transform: scale(1.02);
     }
 
-    .logo-musume {
-      background: linear-gradient(to bottom, #ffa3ca 0%, #f43f5e 50%, #d946ef 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* PALAVRA INFERIOR: BR WIKI */
-    .logo-sub {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: -4px;
-    }
-
-    .logo-sub-text {
-      font-size: 1.8rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      filter: 
-        drop-shadow(1.5px 1.5px 0px #ffffff) 
-        drop-shadow(-1.5px -1.5px 0px #ffffff) 
-        drop-shadow(1.5px -1.5px 0px #ffffff) 
-        drop-shadow(-1.5px 1.5px 0px #ffffff)
-        drop-shadow(0px 4px 0px #5c116d);
-    }
-
-    .letter-b {
-      background: linear-gradient(to bottom, #a3e635 0%, #65a30d 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .letter-r {
-      background: linear-gradient(to bottom, #fde047 0%, #ca8a04 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .text-wiki {
-      background: linear-gradient(to bottom, #ffffff 0%, #e0a3ff 50%, #c0392b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
+    /* SUBTÍTULO COM PLACA DE UI NÍTIDA */
     .subtitle {
-      font-weight: 800;
-      color: #7a604b;
-      margin-top: 15px;
+      font-weight: 900;
+      color: #3e2817;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px);
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 2px solid #e2dec8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-top: 12px;
       font-size: 0.95rem;
+      display: inline-block;
     }
 
     /* BARRA DE PESQUISA ESTILO JOGO */
@@ -181,6 +132,7 @@
       gap: 18px;
       max-width: 1100px;
       margin: 0 auto;
+      width: 100%;
     }
 
     .card-mini {
@@ -515,36 +467,37 @@
     .prev-btn { left: 20px; }
     .next-btn { right: 20px; }
 
+    /* RODAPÉ DO SEU @ */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-bottom: 10px;
+    }
+
+    .credit-tag {
+      display: inline-block;
+      background: #ffffff;
+      color: var(--primary-dark);
+      border: 3px solid var(--primary-green);
+      padding: 8px 22px;
+      border-radius: 25px;
+      font-weight: 900;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      letter-spacing: 0.5px;
+    }
+
     @media (max-width: 600px) {
-      .logo-main { font-size: 2.2rem; }
-      .logo-sub-text { font-size: 1.3rem; }
       .artes-container, .artes-container-2 { grid-template-columns: 1fr; }
       .search-container { flex-direction: column; }
       .char-counter { width: 100%; text-align: center; }
-    }
-
-    .watermark {
-      text-align: center;
-      margin-top: 40px;
-      font-weight: 900;
-      color: var(--primary-green);
-      text-shadow: 1px 1px 0 #fff;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="game-logo-wrapper">
-      <div class="logo-main">
-        <span class="logo-uma">UMA</span><span class="logo-musume">MUSUME</span>
-      </div>
-      <div class="logo-sub">
-        <span class="logo-sub-text">
-          <span class="letter-b">B</span><span class="letter-r">R</span> <span class="text-wiki">WIKI</span>
-        </span>
-      </div>
-    </div>
+    <img src="imagens/logo.png" alt="Uma Musume BR Wiki" class="site-logo">
     <p class="subtitle">Wiki e Banco de Dados Oficial de Personagens</p>
   </header>
 
@@ -886,7 +839,9 @@
     <button class="nav-btn next-btn" onclick="changeImage(1)">❯</button>
   </div>
 
-  <div class="watermark">@Thiagobaoo</div>
+  <footer>
+    <div class="credit-tag">Desenvolvido por @Thiagobaoo 🐴✨</div>
+  </footer>
 
   <script>
     // ORDENAR CARDS EM ORDEM ALFABÉTICA AUTOMATICAMENTE
