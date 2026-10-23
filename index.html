@@ -400,7 +400,7 @@
     <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Pesquisar personagem por nome, dubladora, etc...">
   </div>
 
-  <!-- LISTA DE CARDS MINIMIZADOS -->
+  <!-- LISTA DE CARDS MINIATURA (ORDENADOS AUTOMATICAMENTE DE A A Z) -->
   <div class="grid" id="characterGrid">
     
     <!-- CARD MINI: VIVLOS -->
@@ -438,7 +438,7 @@
         <span>Vivlos</span>
       </div>
 
-      <div class="info-group" style="margin-top: 10px; font-style: italic; color: #555;"><b>Introdução:</b> "Eu sou Vivlos! Um dia, vou correr na glamorosa cidade de Dubai e me tornar uma celebridade ♪ Eu já me decidi ♪ Vamos juntos!"</div>
+      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "Eu sou Vivlos! Um dia, vou correr na glamorosa cidade de Dubai e me tornar uma celebridade ♪ Eu já me decidi ♪ Vamos juntos!"</div>
       
       <div class="info-group"><b>Dubladora:</b> Ayasa Itou</div>
       <div class="info-group"><b>Aniversário:</b> 9 de Abril</div>
@@ -508,7 +508,7 @@
         <span>Cheval Grand</span>
       </div>
 
-      <div class="info-group" style="margin-top: 10px; font-style: italic; color: #555;"><b>Introdução:</b> "...Cheval Grand... Sabe... Eu sei que pode parecer um pouco exagerado, mas... Um dia, vou dar o meu melhor para ser a maior... Não, eu serei a maior de todas"</div>
+      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "...Cheval Grand... Sabe... Eu sei que pode parecer um pouco exagerado, mas... Um dia, vou dar o meu melhor para ser a maior... Não, eu serei a maior de todas"</div>
       
       <div class="info-group"><b>Dubladora:</b> Yuko Natsuyoshi</div>
       <div class="info-group"><b>Aniversário:</b> 14 de Março</div>
@@ -578,6 +578,23 @@
   <div class="watermark">@Thiagobaoo</div>
 
   <script>
+    // ORDENAR CARDS EM ORDEM ALFABÉTICA AUTOMATICAMENTE
+    function sortCardsAlphabetically() {
+      let grid = document.getElementById('characterGrid');
+      let cards = Array.from(grid.getElementsByClassName('card-mini'));
+
+      cards.sort((a, b) => {
+        let nameA = a.querySelector('h3').innerText.toLowerCase();
+        let nameB = b.querySelector('h3').innerText.toLowerCase();
+        return nameA.localeCompare(nameB);
+      });
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    // Executa a ordenação assim que a página carregar
+    window.addEventListener('DOMContentLoaded', sortCardsAlphabetically);
+
     // Filtro de pesquisa
     function filterCards() {
       let input = document.getElementById('searchInput').value.toLowerCase();
