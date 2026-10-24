@@ -377,6 +377,14 @@
     }
 
     /* TEMAS COLORIDOS POR PERSONAGEM */
+    .theme-red::before { background: #ff1919 !important; }
+    .theme-red:hover { border-color: #ff1919 !important; }
+    .theme-red .click-hint { color: #ff1919 !important; }
+    .theme-red-banner { background: linear-gradient(135deg, #ff1919 0%, #b51212 100%) !important; }
+    .theme-red-section { background: #ff1919 !important; }
+    .theme-red-gallery .arte-card:hover { border-color: #ff1919 !important; }
+    .theme-red-gallery .arte-card:hover .arte-label { background: #ff1919 !important; color: #fff !important; border-color: #ff1919 !important; }
+    
     .theme-blue::before { background: #0284c7 !important; }
     .theme-blue:hover { border-color: #0284c7 !important; }
     .theme-blue .click-hint { color: #0284c7 !important; }
@@ -520,6 +528,18 @@
 
   <!-- LISTA DE CARDS MINIATURA (ORDENADOS AUTOMATICAMENTE DE A A Z) -->
   <div class="grid" id="characterGrid">
+
+    <!-- CARD MINI: MARUZENSKY -->
+    <div class="card-mini theme-red" data-name="maruzensky lynn" onclick="openModal('modal-maruzensky')">
+      <div class="avatar-frame">
+        <img src="imagens/maruzensky/maruzensky-icon.png" alt="Maruzensky">
+      </div>
+      <div class="mini-info">
+        <h3>Maruzensky</h3>
+        <p><b>Dubladora:</b> Lynn</p>
+        <span class="click-hint">Clique para ver mais ➔</span>
+      </div>
+    </div>
     
     <!-- CARD MINI: VIVLOS -->
     <div class="card-mini theme-blue" data-name="vivlos ayasa itou" onclick="openModal('modal-vivlos')">
