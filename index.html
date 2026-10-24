@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uma Musume BR Wiki </title>
+  <title>Uma Musume BR Wiki</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Nunito:wght@700;800;900&display=swap');
 
@@ -17,12 +17,7 @@
       --border-color: #d8d3c3;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: 'Nunito', 'Segoe UI', Arial, sans-serif; 
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
 
     body { 
       background: linear-gradient(to bottom, rgba(243, 241, 233, 0.35), rgba(243, 241, 233, 0.50)),
@@ -35,471 +30,91 @@
       justify-content: space-between;
     }
 
-    /* HEADER COM LOGO.PNG */
-    header {
-      text-align: center;
-      margin: 10px auto 20px auto;
-      user-select: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    header { text-align: center; margin: 10px auto 20px auto; display: flex; flex-direction: column; align-items: center; }
+    .site-logo { max-width: 420px; width: 88%; height: auto; filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.25)); }
 
-    .site-logo {
-      max-width: 420px;
-      width: 88%;
-      height: auto;
-      filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.25));
-      transition: transform 0.2s ease;
-    }
-
-    .site-logo:hover {
-      transform: scale(1.02);
-    }
-
-    /* SUBTÍTULO COM PLACA DE UI NÍTIDA */
     .subtitle {
-      font-weight: 900;
-      color: #3e2817;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(4px);
-      padding: 6px 18px;
-      border-radius: 20px;
-      border: 2px solid #e2dec8;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-top: 12px;
-      font-size: 0.95rem;
-      display: inline-block;
+      font-weight: 900; color: #3e2817; background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px); padding: 6px 18px; border-radius: 20px;
+      border: 2px solid #e2dec8; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-top: 12px; font-size: 0.95rem;
     }
 
-    /* BARRA DE PESQUISA ESTILO JOGO */
-    .search-container {
-      max-width: 600px;
-      margin: 0 auto 30px auto;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .search-box {
-      flex: 1;
-      position: relative;
-    }
-
+    .search-container { max-width: 600px; margin: 0 auto 30px auto; display: flex; gap: 12px; align-items: center; }
+    .search-box { flex: 1; position: relative; }
     .search-box input {
-      width: 100%;
-      padding: 12px 20px 12px 45px;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-color);
-      background: #fff;
-      border: 3px solid var(--primary-green);
-      border-radius: 30px;
-      outline: none;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.06);
-      transition: all 0.2s ease;
+      width: 100%; padding: 12px 20px 12px 45px; font-size: 1rem; font-weight: 800;
+      color: var(--text-color); background: #fff; border: 3px solid var(--primary-green);
+      border-radius: 30px; outline: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
     }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); }
+    .char-counter { background: #fff; border: 3px solid #dcd7c5; padding: 10px 18px; border-radius: 25px; font-weight: 900; }
 
-    .search-box input:focus {
-      border-color: var(--tracen-gold);
-      box-shadow: 0 0 0 4px rgba(243, 168, 18, 0.2);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.1rem;
-    }
-
-    .char-counter {
-      background: #ffffff;
-      border: 3px solid #dcd7c5;
-      padding: 10px 18px;
-      border-radius: 25px;
-      font-weight: 900;
-      font-size: 0.9rem;
-      color: #614835;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      white-space: nowrap;
-    }
-
-    /* GRID DE CARDS MINIATURA ESTILO GAME CARD */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 18px;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
     .card-mini {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 14px 16px;
-      box-shadow: 0 6px 0px #ded8c4, 0 10px 15px rgba(0,0,0,0.06);
-      border: 3px solid #e2dec8;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      background: var(--card-bg); border-radius: 20px; padding: 14px 16px;
+      box-shadow: 0 6px 0px #ded8c4; border: 3px solid #e2dec8; display: flex; align-items: center;
+      gap: 14px; cursor: pointer; position: relative; overflow: hidden; transition: transform 0.15s;
     }
-    
-    .card-mini:hover { 
-      transform: translateY(-4px); 
-      box-shadow: 0 10px 0px #ded8c4, 0 14px 20px rgba(0,0,0,0.08);
-    }
+    .card-mini:hover { transform: translateY(-4px); }
+    .card-mini::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--primary-green); }
 
-    .card-mini:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 0px #ded8c4, 0 6px 10px rgba(0,0,0,0.05);
-    }
+    .avatar-frame { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #e5e0cf; overflow: hidden; flex-shrink: 0; }
+    .avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .mini-info h3 { font-size: 1.15rem; font-weight: 900; }
+    .mini-info p { font-size: 0.85rem; font-weight: 700; color: #786250; }
+    .mini-info .click-hint { display: inline-block; margin-top: 4px; font-weight: 900; font-size: 0.78rem; }
 
-    .card-mini::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 6px;
-      background: var(--primary-green);
-    }
+    /* MODAL */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(3px); display: none; justify-content: center; align-items: center; padding: 20px; z-index: 1000; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: var(--card-bg); border-radius: 24px; padding: 28px; max-width: 850px; width: 95%; max-height: 90vh; overflow-y: auto; border: 5px solid #e8e3d3; position: relative; }
+    .close-btn { position: absolute; top: 18px; right: 18px; background: #ff4757; color: white; border: 3px solid #ffffff; width: 36px; height: 36px; border-radius: 50%; font-weight: 900; cursor: pointer; }
 
-    /* Moldura circular da foto */
-    .avatar-frame {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      border: 3px solid #e5e0cf;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.12);
-      overflow: hidden;
-      background: #fff;
-      flex-shrink: 0;
-    }
+    .modal-header-banner { background: linear-gradient(135deg, var(--primary-green), var(--primary-dark)); color: white; padding: 14px 20px; border-radius: 14px; font-size: 1.5rem; font-weight: 900; margin-bottom: 18px; }
+    .info-group { margin-bottom: 9px; font-size: 0.98rem; font-weight: 700; }
+    .info-group b { color: #2b1a0e; font-weight: 900; }
+    .section-title { background: var(--primary-green); color: white; font-size: 0.95rem; font-weight: 900; padding: 6px 14px; border-radius: 8px; margin: 18px 0 10px 0; }
+    .curiosidades { background: #ffffff; padding: 14px 16px; border-radius: 12px; margin-top: 12px; border: 2px solid var(--border-color); }
+    .curiosidades ul { padding-left: 20px; margin-top: 8px; font-size: 0.92rem; font-weight: 700; line-height: 1.5; }
 
-    .avatar-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .artes-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 10px; }
+    .arte-card { background: #fff; border: 3px solid #d1cdb8; border-radius: 14px; padding: 10px; text-align: center; cursor: pointer; }
+    .arte-img-box { width: 100%; height: 260px; border: 2px solid #e2dec8; border-radius: 10px; overflow: hidden; display: flex; justify-content: center; align-items: center; background: #fcfbf9; margin-bottom: 10px; }
+    .arte-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .arte-label { background: #fff; border: 2px solid #d1cdb8; border-radius: 8px; padding: 6px 0; font-weight: 900; color: #4a2e18; }
 
-    .mini-info h3 {
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: var(--text-color);
-      line-height: 1.2;
-    }
-
-    .mini-info p {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #786250;
-      margin-top: 3px;
-    }
-
-    .mini-info .click-hint {
-      display: inline-block;
-      margin-top: 4px;
-      font-weight: 900;
-      font-size: 0.78rem;
-    }
-
-    /* MODAL LARGURA EXPANDIDA */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(3px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      z-index: 1000;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 28px;
-      max-width: 850px;
-      width: 95%;
-      max-height: 90vh;
-      overflow-y: auto;
-      border: 5px solid #e8e3d3;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      position: relative;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      background: #ff4757;
-      color: white;
-      border: 3px solid #ffffff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-weight: 900;
-      cursor: pointer;
-      font-size: 1.1rem;
-      z-index: 10;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.15s;
-    }
-
-    .close-btn:hover {
-      transform: scale(1.1);
-    }
-
-    .modal-header-banner {
-      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
-      color: white;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-size: 1.5rem;
-      font-weight: 900;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-shadow: 1px 2px 0px rgba(0,0,0,0.3);
-    }
-
-    .info-group { 
-      margin-bottom: 9px; 
-      font-size: 0.98rem; 
-      font-weight: 700;
-    }
-    
-    .info-group b { 
-      color: #2b1a0e; 
-      font-weight: 900;
-    }
-
-    .section-title {
-      background: var(--primary-green);
-      color: white;
-      font-size: 0.95rem;
-      font-weight: 900;
-      padding: 6px 14px;
-      border-radius: 8px;
-      margin: 18px 0 10px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-    }
-
-    .curiosidades {
-      background: #ffffff;
-      padding: 14px 16px;
-      border-radius: 12px;
-      margin-top: 12px;
-      border: 2px solid var(--border-color);
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-    }
-    
-    .curiosidades ul { 
-      padding-left: 20px; 
-      margin-top: 8px; 
-      font-size: 0.92rem; 
-      font-weight: 700;
-      line-height: 1.5;
-    }
-
-    /* GALERIA DE ARTES */
-    .artes-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    .artes-container-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    .arte-card {
-      background: #fff;
-      border: 3px solid #d1cdb8;
-      border-radius: 14px;
-      padding: 10px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      cursor: pointer;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .arte-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .arte-img-box {
-      width: 100%;
-      height: 280px;
-      border: 2px solid #e2dec8;
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fcfbf9;
-      margin-bottom: 10px;
-    }
-
-    .arte-img-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .arte-label {
-      width: 100%;
-      background: #fff;
-      border: 2px solid #d1cdb8;
-      border-radius: 8px;
-      padding: 8px 0;
-      font-weight: 900;
-      color: #4a2e18;
-      font-size: 1rem;
-      transition: all 0.2s;
-    }
-
-    /* TEMAS COLORIDOS POR PERSONAGEM */
+    /* TEMAS COLORIDOS */
     .theme-blue::before { background: #0284c7 !important; }
-    .theme-blue:hover { border-color: #0284c7 !important; }
     .theme-blue .click-hint { color: #0284c7 !important; }
-    .theme-blue-banner { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important; }
-    .theme-blue-section { background: #0284c7 !important; }
-    .theme-blue-gallery .arte-card:hover { border-color: #0284c7 !important; }
-    .theme-blue-gallery .arte-card:hover .arte-label { background: #0284c7 !important; color: #fff !important; border-color: #0284c7 !important; }
+    .theme-blue-banner, .theme-blue-section { background: #0284c7 !important; }
 
     .theme-green::before { background: #5ae144 !important; }
-    .theme-green:hover { border-color: #5ae144 !important; }
     .theme-green .click-hint { color: #5ae144 !important; }
-    .theme-green-banner { background: linear-gradient(135deg, #5ae144 0%, #29bd60 100%) !important; }
-    .theme-green-section { background: #5ae144 !important; }
-    .theme-green-gallery .arte-card:hover { border-color: #5ae144 !important; }
-    .theme-green-gallery .arte-card:hover .arte-label { background: #5ae144 !important; color: #fff !important; border-color: #5ae144 !important; }
+    .theme-green-banner, .theme-green-section { background: #5ae144 !important; }
 
     .theme-cyan::before { background: #0ea5e9 !important; }
-    .theme-cyan:hover { border-color: #0ea5e9 !important; }
     .theme-cyan .click-hint { color: #0ea5e9 !important; }
-    .theme-cyan-banner { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%) !important; }
-    .theme-cyan-section { background: #0ea5e9 !important; }
-    .theme-cyan-gallery .arte-card:hover { border-color: #0ea5e9 !important; }
-    .theme-cyan-gallery .arte-card:hover .arte-label { background: #0ea5e9 !important; color: #fff !important; border-color: #0ea5e9 !important; }
+    .theme-cyan-banner, .theme-cyan-section { background: #0ea5e9 !important; }
 
     .theme-indigo::before { background: #4f46e5 !important; }
-    .theme-indigo:hover { border-color: #4f46e5 !important; }
     .theme-indigo .click-hint { color: #4f46e5 !important; }
-    .theme-indigo-banner { background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%) !important; }
-    .theme-indigo-section { background: #4f46e5 !important; }
-    .theme-indigo-gallery .arte-card:hover { border-color: #4f46e5 !important; }
-    .theme-indigo-gallery .arte-card:hover .arte-label { background: #4f46e5 !important; color: #fff !important; border-color: #4f46e5 !important; }
+    .theme-indigo-banner, .theme-indigo-section { background: #4f46e5 !important; }
 
     .theme-pink::before { background: #ff5eba !important; }
-    .theme-pink:hover { border-color: #ff5eba !important; }
     .theme-pink .click-hint { color: #ff5eba !important; }
-    .theme-pink-banner { background: linear-gradient(135deg, #ff5eba 0%, #d400ff 100%) !important; }
-    .theme-pink-section { background: #ff5eba !important; }
-    .theme-pink-gallery .arte-card:hover { border-color: #ff5eba !important; }
-    .theme-pink-gallery .arte-card:hover .arte-label { background: #ff5eba !important; color: #fff !important; border-color: #ff5eba !important; }
+    .theme-pink-banner, .theme-pink-section { background: #ff5eba !important; }
 
-    /* LIGHTBOX TELA CHEIA */
-    .image-modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      padding: 20px;
-    }
-
+    /* LIGHTBOX */
+    .image-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.9); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
     .image-modal-overlay.active { display: flex; }
+    .image-modal-content { max-width: 85vw; max-height: 85vh; object-fit: contain; }
+    .close-image-btn { position: absolute; top: 20px; right: 25px; background: #ff4757; color: white; border: 2px solid white; font-size: 1.3rem; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-weight: 900; }
+    .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.25); color: white; border: 2px solid rgba(255,255,255,0.6); font-size: 1.8rem; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+    .prev-btn { left: 20px; } .next-btn { right: 20px; }
 
-    .image-modal-content {
-      max-width: 85vw;
-      max-height: 85vh;
-      object-fit: contain;
-      filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.6));
-    }
-
-    .close-image-btn {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      background: #ff4757;
-      color: white;
-      border: 2px solid white;
-      font-size: 1.3rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-weight: 900;
-      z-index: 2010;
-    }
-
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.25);
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      font-size: 1.8rem;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2010;
-    }
-
-    .nav-btn:hover { background: rgba(255, 255, 255, 0.45); }
-    .prev-btn { left: 20px; }
-    .next-btn { right: 20px; }
-
-    /* RODAPÉ DO SEU @ */
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding-bottom: 10px;
-    }
-
-    .credit-tag {
-      display: inline-block;
-      background: #ffffff;
-      color: var(--primary-dark);
-      border: 3px solid var(--primary-green);
-      padding: 8px 22px;
-      border-radius: 25px;
-      font-weight: 900;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-      letter-spacing: 0.5px;
-    }
-
-    @media (max-width: 600px) {
-      .artes-container, .artes-container-2 { grid-template-columns: 1fr; }
-      .search-container { flex-direction: column; }
-      .char-counter { width: 100%; text-align: center; }
-    }
+    footer { text-align: center; margin-top: 40px; padding-bottom: 10px; }
+    .credit-tag { display: inline-block; background: #ffffff; color: var(--primary-dark); border: 3px solid var(--primary-green); padding: 8px 22px; border-radius: 25px; font-weight: 900; font-size: 0.95rem; }
   </style>
 </head>
 <body>
@@ -512,416 +127,14 @@
   <div class="search-container">
     <div class="search-box">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Pesquisar por nome, etc...">
+      <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Pesquisar por nome, dubladora...">
     </div>
-    <div class="char-counter" id="charCounter">Total: 4</div>
+    <div class="char-counter" id="charCounter">Total: 0</div>
   </div>
 
-  <!-- LISTA DE CARDS MINIATURA (ORDENADOS AUTOMATICAMENTE DE A A Z) -->
-  <div class="grid" id="characterGrid">
-    
-    <!-- CARD MINI: VIVLOS -->
-    <div class="card-mini theme-blue" data-name="vivlos ayasa itou" onclick="openModal('modal-vivlos')">
-      <div class="avatar-frame">
-        <img src="imagens/vivlos/vivlos_icon.png" alt="Vivlos">
-      </div>
-      <div class="mini-info">
-        <h3>Vivlos</h3>
-        <p><b>Dubladora:</b> Ayasa Itou</p>
-        <span class="click-hint">Clique para ver mais ➔</span>
-      </div>
-    </div>
+  <div class="grid" id="characterGrid"></div>
+  <div id="modalsContainer"></div>
 
-    <!-- CARD MINI: CHEVAL GRAND -->
-    <div class="card-mini theme-cyan" data-name="cheval grand yuko natsuyoshi" onclick="openModal('modal-cheval')">
-      <div class="avatar-frame">
-        <img src="imagens/cheval/cheval-grand-icon.png" alt="Cheval Grand">
-      </div>
-      <div class="mini-info">
-        <h3>Cheval Grand</h3>
-        <p><b>Dubladora:</b> Yuko Natsuyoshi</p>
-        <span class="click-hint">Clique para ver mais ➔</span>
-      </div>
-    </div>
-
-    <!-- CARD MINI: VERXINA -->
-    <div class="card-mini theme-indigo" data-name="verxina kaya okuno" onclick="openModal('modal-verxina')">
-      <div class="avatar-frame">
-        <img src="imagens/verxina/verxina-icon.png" alt="Verxina">
-      </div>
-      <div class="mini-info">
-        <h3>Verxina</h3>
-        <p><b>Dubladora:</b> Kaya Okuno</p>
-        <span class="click-hint">Clique para ver mais ➔</span>
-      </div>
-    </div>
-
-    <!-- CARD MINI: SPECIAL WEEK -->
-    <div class="card-mini theme-pink" data-name="special week spe azumi waki" onclick="openModal('modal-specialweek')">
-      <div class="avatar-frame">
-        <img src="imagens/special week/special-week-icon.png" alt="Special Week">
-      </div>
-      <div class="mini-info">
-        <h3>Special Week</h3>
-        <p><b>Dubladora:</b> Azumi Waki</p>
-        <span class="click-hint">Clique para ver mais ➔</span>
-      </div>
-    </div>
-
-    <!-- CARD MINI: SILENCE SUZUKA -->
-    <div class="card-mini theme-green" data-name="silence suzuka marika kouno" onclick="openModal('modal-silencesuzuka')">
-      <div class="avatar-frame">
-        <img src="imagens/suzuka/silence-suzuka-icon.png" alt="Silence Suzuka">
-      </div>
-      <div class="mini-info">
-        <h3>Silence Suzuka</h3>
-        <p><b>Dubladora:</b> Marika Kouno</p>
-        <span class="click-hint">Clique para ver mais ➔</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- MODAL DE DETALHES: VIVLOS -->
-  <div class="modal-overlay" id="modal-vivlos" onclick="closeModalOnBg(event, 'modal-vivlos')">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('modal-vivlos')">✕</button>
-      
-      <div class="modal-header-banner theme-blue-banner">
-        <span>Vivlos</span>
-      </div>
-
-      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "Eu sou Vivlos! Um dia, vou correr na glamorosa cidade de Dubai e me tornar uma celebridade ♪ Eu já me decidi ♪ Vamos juntos!"</div>
-      
-      <div class="info-group"><b>Dubladora:</b> Ayasa Itou</div>
-      <div class="info-group"><b>Aniversário:</b> 9 de Abril</div>
-      <div class="info-group"><b>Altura:</b> 156 cm | <b>Peso:</b> Estável</div>
-      <div class="info-group"><b>Tamanho do pé:</b> 22 cm</div>
-      <div class="info-group"><b>Colega de Quarto:</b> Air Messiah</div>
-      <div class="info-group"><b>Escolaridade:</b> 7º Ano do ensino fundamental</div>
-      
-      <div class="section-title theme-blue-section"><span>Medidas</span></div>
-      <div class="info-group"><b>Busto:</b> 81 | <b>Cintura:</b> 51 | <b>Quadril:</b> 86</div>
-
-      <div class="section-title theme-blue-section"><span>Perfil e Habilidades</span></div>
-      <div class="info-group"><b>Ponto Forte:</b> Lidar com o frio, beisebol, sonhar acordado em ser uma celebridade</div>
-      <div class="info-group"><b>Ponto Fraco:</b> Ruídos distrativos, limpeza</div>
-      <div class="info-group"><b>Cauda:</b> Ela treme de prazer quando quer ser mimada</div>
-      <div class="info-group"><b>Orelhas:</b> Usa condicionador feito para celebridades</div>
-
-      <div class="curiosidades">
-        <b style="color:#0284c7;">Curiosidades:</b>
-        <ul>
-          <li>Ela chama o treinador de "Torecchi"</li>
-          <li>Ela usa cerca de vinte variações diferentes de "Por favor ♡"</li>
-          <li>Ela tem praticado como mimar suas irmãs para quando ficar mais alta que elas</li>
-          <li>Na vida real, Vivlos correu na Dubai Turf (G1), conquistando primeiro lugar em 2017 e segundo lugar em 2018 e 2019</li>
-          <li>Assim como suas irmãs, Vivlos pertencia na vida real a Kazuhiro Sasaki, um ex-jogador de beisebol profissional famoso que jogou tanto no Japão quanto na MLB (Seattle Mariners). É por isso que, no design das personagens, há pequenos detalhes que remetem ao beisebol ou ao status de "celebridade" do dono</li>
-          <li>Em várias artes e animações, a Vivlos é vista com aqueles brinquedos de festa chamados "língua de sogra" (que fazem barulho e esticam quando você sopra), isso reforça sua personalidade infantil e festiva</li>
-          <li>Na vida real, Vivlos era conhecida por ser muito pequena em comparação com outras competidoras. Em sua vitória no Dubai Turf, ela pesava apenas cerca de 426 kg (éguas de elite costumam pesar entre 460 kg e 500 kg). Isso é refletido em seu design no jogo, sendo mais baixa que suas irmãs</li>
-        </ul>
-      </div>
-
-      <!-- GALERIA DE ARTES -->
-      <div class="section-title theme-blue-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container theme-blue-gallery" id="galeria-vivlos">
-        
-        <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 0)">
-          <div class="arte-img-box">
-            <img src="imagens/vivlos/vivlos-uniform.png" alt="Uniforme">
-          </div>
-          <div class="arte-label">Uniforme</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 1)">
-          <div class="arte-img-box">
-            <img src="imagens/vivlos/vivlos-racing.png" alt="Corrida">
-          </div>
-          <div class="arte-label">Corrida</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-vivlos', 2)">
-          <div class="arte-img-box">
-            <img src="imagens/vivlos/vivlos-concept.png" alt="Arte Conceitual">
-          </div>
-          <div class="arte-label">Arte Conceitual</div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODAL DE DETALHES: CHEVAL GRAND -->
-  <div class="modal-overlay" id="modal-cheval" onclick="closeModalOnBg(event, 'modal-cheval')">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('modal-cheval')">✕</button>
-      
-      <div class="modal-header-banner theme-cyan-banner">
-        <span>Cheval Grand</span>
-      </div>
-
-      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "...Cheval Grand... Sabe... Eu sei que pode parecer um pouco exagerado, mas... Um dia, vou dar o meu melhor para ser a maior... Não, eu serei a maior de todas"</div>
-      
-      <div class="info-group"><b>Dubladora:</b> Yuko Natsuyoshi</div>
-      <div class="info-group"><b>Aniversário:</b> 14 de Março</div>
-      <div class="info-group"><b>Altura:</b> 160 cm | <b>Peso:</b> Estável</div>
-      <div class="info-group"><b>Tamanho do pé:</b> 24 cm</div>
-      <div class="info-group"><b>Colega de Quarto:</b> Win Variation</div>
-      <div class="info-group"><b>Escolaridade:</b> 7º Ano do ensino fundamental</div>
-      
-      <div class="section-title theme-cyan-section"><span>Medidas</span></div>
-      <div class="info-group"><b>Busto:</b> 85 | <b>Cintura:</b> 56 | <b>Quadril:</b> 80</div>
-
-      <div class="section-title theme-cyan-section"><span>Perfil e Habilidades</span></div>
-      <div class="info-group"><b>Ponto Forte:</b> Pesca em alto-mar, beisebol, passar tempo sozinha</div>
-      <div class="info-group"><b>Ponto Fraco:</b> Se apresentar, controle de peso</div>
-      <div class="info-group"><b>Cauda:</b> Sua irmã costumava trançar o rabo dela sem a sua permissão</div>
-      <div class="info-group"><b>Orelhas:</b> Quando está sozinha, ela tira o chapéu e deixa as orelhas tremularem ao vento</div>
-
-      <div class="curiosidades">
-        <b style="color:#0ea5e9;">Curiosidades:</b>
-        <ul>
-          <li>Ela gosta de assistir vídeos de pesca</li>
-          <li>Ela prefere mochi salgado em contraste com suas irmãs que gostam de mochi doce</li>
-          <li>Seu amor pelo beisebol é uma referência ao Cheval Grand da vida real, no qual seu dono, Kazuhiro Sasaki, é um ex-arremessador substituto profissional de beisebol</li>
-          <li>Em sua história de carreira, ela tem uma amiga de infância chamada Shine Praise que vai para a Austrália durante seu último ano, mas se machuca enquanto está lá. Esta Umamusume é uma referência ao verdadeiro cavalo Admire Deus, que era um ano mais velho que Cheval Grand e correu com ele no Hanshin Daishoten. Em 2017, ele foi transferido para a Austrália, onde sofreu uma lesão catastrófica e faleceu em 25 de novembro de 2017.</li>
-          <li>Ela admira uma certa Umamusume que derrotou uma vencedora invicta da Tríplice Coroa no Arima Kinen e a vê como uma competidora que superou as expectativas (uma "underdog"). Por outro lado, suas irmãs admiram a Umamusume da Tríplice Coroa que é vista como uma "heroína". A Umamusume que Cheval admira é baseada em Heart's Cry, um cavalo que derrotou Deep Impact (o vencedor invicto da Tríplice Coroa de 2005) no Arima Kinen daquele mesmo ano. Heart's Cry é o pai de Cheval Grand, enquanto Deep Impact é o pai tanto de Verxina quanto de Vivlos</li>
-        </ul>
-      </div>
-
-      <!-- GALERIA DE ARTES -->
-      <div class="section-title theme-cyan-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container theme-cyan-gallery" id="galeria-cheval">
-        
-        <div class="arte-card" onclick="openGalleryModal('galeria-cheval', 0)">
-          <div class="arte-img-box">
-            <img src="imagens/cheval/cheval-grand-uniform.png" alt="Uniforme">
-          </div>
-          <div class="arte-label">Uniforme</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-cheval', 1)">
-          <div class="arte-img-box">
-            <img src="imagens/cheval/cheval-grand-racing.png" alt="Corrida">
-          </div>
-          <div class="arte-label">Corrida</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-cheval', 2)">
-          <div class="arte-img-box">
-            <img src="imagens/cheval/cheval-grand-concept.png" alt="Arte Conceitual">
-          </div>
-          <div class="arte-label">Arte Conceitual</div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODAL DE DETALHES: VERXINA -->
-  <div class="modal-overlay" id="modal-verxina" onclick="closeModalOnBg(event, 'modal-verxina')">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('modal-verxina')">✕</button>
-      
-      <div class="modal-header-banner theme-indigo-banner">
-        <span>Verxina</span>
-      </div>
-
-      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "Eu sou Verxina. Recuso-me a desistir até conquistar tudo e me tornar rainha"</div>
-      
-      <div class="info-group"><b>Dubladora:</b> Kaya Okuno</div>
-      <div class="info-group"><b>Aniversário:</b> 5 de Março</div>
-      <div class="info-group"><b>Altura:</b> 158 cm | <b>Peso:</b> Na medida</div>
-      <div class="info-group"><b>Tamanho do pé:</b> 23 cm</div>
-      <div class="info-group"><b>Colega de Quarto:</b> Hokko Tarumae</div>
-      <div class="info-group"><b>Escolaridade:</b> 9º Ano do ensino fundamental</div>
-      
-      <div class="section-title theme-indigo-section"><span>Medidas</span></div>
-      <div class="info-group"><b>Busto:</b> 83 | <b>Cintura:</b> 53 | <b>Quadril:</b> 78</div>
-
-      <div class="section-title theme-indigo-section"><span>Perfil e Habilidades</span></div>
-      <div class="info-group"><b>Ponto Forte:</b> Kickboxing, beisebol, cambalhotas para trás</div>
-      <div class="info-group"><b>Ponto Fraco:</b> Drageias prateadas, ovos cozidos</div>
-      <div class="info-group"><b>Orelhas:</b> Consegue identificar qual membro da família lançou a bola apenas pelo som dela sendo apanhada</div>
-      <div class="info-group"><b>Cauda:</b> Quando ela era mais jovem, sua mãe costumava escovar seus cabelos para ela</div>
-
-      <div class="curiosidades">
-        <b style="color:#4f46e5;">Curiosidades:</b>
-        <ul>
-          <li>Em 2012, Verxina ficou em 2º lugar em todas as três corridas da Tríplice Coroa Feminina (Oka Sho, Yushun Himba e Shuka Sho), perdendo todas para Gentildonna por margens minúsculas</li>
-          <li>Apesar da fama de vice, ela provou sua força ao vencer o Victoria Mile duas vezes consecutivas (2013 e 2014). Ela foi a primeira égua da história a conseguir o bicampeonato nessa prova</li>
-          <li>Ela pertencia a Kazuhiro Sasaki, um ex-jogador de beisebol profissional (MLB/NPB) extremamente famoso. Isso explica por que a personagem no jogo tem um ar de "celebridade" e riqueza</li>
-          <li>No jogo sua personalidade é moldada pela rivalidade com Gentildonna. Ela é extremamente dedicada e perfeccionista, agindo com uma elegância quase fria para esconder a frustração de sempre chegar um passo atrás da sua rival</li>
-          <li>Suas cores (branco, azul) são uma referência direta às cores da farda (silk) de Kazuhiro Sasaki. O estilo "ojousama" (moça rica) combina com o status do seu dono na vida real</li>
-        </ul>
-      </div>
-
-      <!-- GALERIA DE ARTES (2 COLUNAS) -->
-      <div class="section-title theme-indigo-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container-2 theme-indigo-gallery" id="galeria-verxina">
-        
-        <div class="arte-card" onclick="openGalleryModal('galeria-verxina', 0)">
-          <div class="arte-img-box">
-            <img src="imagens/verxina/verxina-uniform.png" alt="Uniforme">
-          </div>
-          <div class="arte-label">Uniforme</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-verxina', 1)">
-          <div class="arte-img-box">
-            <img src="imagens/verxina/verxina-racing.png" alt="Corrida">
-          </div>
-          <div class="arte-label">Corrida</div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODAL DE DETALHES: SPECIAL WEEK -->
-  <div class="modal-overlay" id="modal-specialweek" onclick="closeModalOnBg(event, 'modal-specialweek')">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('modal-specialweek')">✕</button>
-      
-      <div class="modal-header-banner theme-pink-banner">
-        <span>Special Week</span>
-      </div>
-
-      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "Meu nome é Special Week! Meu sonho é ser a melhor Umamusume de todo o Japão! Preciso me esforçar bastante para deixar minhas mães orgulhosas!"</div>
-      
-      <div class="info-group"><b>Dubladora:</b> Azumi Waki</div>
-      <div class="info-group"><b>Aniversário:</b> 2 de Maio</div>
-      <div class="info-group"><b>Altura:</b> 158 cm | <b>Peso:</b> Abaixou um pouco</div>
-      <div class="info-group"><b>Tamanho do pé:</b> 23 cm</div>
-      <div class="info-group"><b>Colega de Quarto:</b> Silence Suzuka</div>
-      <div class="info-group"><b>Escolaridade:</b> 9º Ano do ensino fundamental</div>
-      
-      <div class="section-title theme-pink-section"><span>Medidas</span></div>
-      <div class="info-group"><b>Busto:</b> 81 | <b>Cintura:</b> 56 | <b>Quadril:</b> 81</div>
-
-      <div class="section-title theme-pink-section"><span>Perfil e Habilidades</span></div>
-      <div class="info-group"><b>Ponto Forte:</b> Relatórios detalhados sobre a alimentação</div>
-      <div class="info-group"><b>Ponto Fraco:</b> Usar seu bilhete de trem</div>
-      <div class="info-group"><b>Orelhas:</b> Fica alerta e se teletransporta para a cozinha ao ouvir sons de preparo de comida</div>
-      <div class="info-group"><b>Cauda:</b> Se move junto com as próprias emoções, o que a torna uma péssima jogadora de pôquer</div>
-
-      <div class="curiosidades">
-        <b style="color:#ff5eba;">Curiosidades:</b>
-        <ul>
-          <li>Ela consegue distinguir diferentes marcas de leite apenas pelo sabor</li>
-          <li>Ela é ótima em carregar as pessoas nas costas. Quem ela carrega acaba dormindo rapidinho</li>
-          <li>Ao contrário da maioria das Umamusume, que adotam muitas das peculiaridades e qualidades dos cavalos nos quais se baseiam, a Special Week difere drasticamente da Spe da vida real, possivelmente devido ao fato de que a Spe é considerada o mascote da franquia, e tais mudanças tiveram que ser feitas para torná-la mais comercializável</li>
-          <li>Enquanto ela é retratada como uma garota otimista, idealista, ingênua e boba do campo, que é amigável com outras Umamusume e faz um esforço para manter amizades entre si, a Spe da vida real era uma solitária que era indiferente à sua própria espécie, amigável apenas com os humanos</li>
-          <li>A Spe considers Silence Suzuka um modelo a ser seguido. Na vida real, porém, os dois cavalos nunca se conheceram durante a vida. Suas interações foram baseadas no fato de seus colegas da vida real terem sido montados por Yutaka Take, e possivelmente pelo motivo de ambos terem sido gerados por Sunday Silence, embora cavalos que compartilham apenas um pai não sejam considerados irmãos</li>
-          <li>Os acessórios dourados de trevo de quatro folhas em sua roupa de corrida fazem referência às quatro vitórias de sua contraparte na vida real no G1</li>
-          <li>O mesmo acessório é presente nas Umamusume que são descendentes da Spe, como Cesario, Buena Vista, e Epiphaneia</li>
-        </ul>
-      </div>
-
-      <!-- GALERIA DE ARTES (3 COLUNAS) -->
-      <div class="section-title theme-pink-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container theme-pink-gallery" id="galeria-specialweek">
-        
-        <div class="arte-card" onclick="openGalleryModal('galeria-specialweek', 0)">
-          <div class="arte-img-box">
-            <img src="imagens/special week/special-week-uniform.png" alt="Uniforme">
-          </div>
-          <div class="arte-label">Uniforme</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-specialweek', 1)">
-          <div class="arte-img-box">
-            <img src="imagens/special week/special-week-racing.png" alt="Corrida">
-          </div>
-          <div class="arte-label">Corrida</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-specialweek', 2)">
-          <div class="arte-img-box">
-            <img src="imagens/special week/special-week-concept.png" alt="Arte Conceitual">
-          </div>
-          <div class="arte-label">Arte Conceitual</div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-    <!-- MODAL DE DETALHES: SILENCE SUZUKA -->
-  <div class="modal-overlay" id="modal-silencesuzuka" onclick="closeModalOnBg(event, 'modal-silencesuzuka')">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('modal-silencesuzuka')">✕</button>
-      
-      <div class="modal-header-banner theme-green-banner">
-        <span>Silence Suzuka</span>
-      </div>
-
-      <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "Eu sou Silence Suzuka. Adoro correr e não vou ceder a liderança a ninguém. Hum... é basicamente isso"</div>
-      
-      <div class="info-group"><b>Dubladora:</b> Marika Kouno</div>
-      <div class="info-group"><b>Aniversário:</b> 1 de Maio</div>
-      <div class="info-group"><b>Altura:</b> 161 cm | <b>Peso:</b> Sem mudança</div>
-      <div class="info-group"><b>Tamanho do pé:</b> 23 cm</div>
-      <div class="info-group"><b>Colega de Quarto:</b> Special Week</div>
-      <div class="info-group"><b>Escolaridade:</b> 1º Ano do ensino médio</div>
-      
-      <div class="section-title theme-green-section"><span>Medidas</span></div>
-      <div class="info-group"><b>Busto:</b> 70 | <b>Cintura:</b> 53 | <b>Quadril:</b> 79</div>
-
-      <div class="section-title theme-green-section"><span>Perfil e Habilidades</span></div>
-      <div class="info-group"><b>Ponto Forte:</b> Correr longas distâncias</div>
-      <div class="info-group"><b>Ponto Fraco:</b> Lugares lotados</div>
-      <div class="info-group"><b>Cauda:</b> Às vezes, ela não ouve nada quando pensa em correr</div>
-      <div class="info-group"><b>Orelhas:</b> Ela sempre se esforça para reduzir sua resistência ao vento</div>
-
-      <div class="curiosidades">
-        <b style="color:#5ae144;">Curiosidades:</b>
-        <ul>
-          <li>Ela é habilidosa em girar canetas</li>
-          <li>Ela guarda vários pares idênticos de sapatos só por precaução</li>
-          <li>Ela é a única integrante da Equipe Spica que nunca venceu uma das corridas da Tríplice Coroa ou da Tríplice Tiara</li>
-          <li>Apesar de sua contraparte na vida real possuir uma mancha branca na testa (lista), isso não foi incorporado ao design</li>
-          <li>Sua tendência de andar em círculos no sentido anti-horário foi adaptada a partir do cavalo real, que costumava girar em círculos na mesma direção quando estava estressado</li>
-          <li>Apesar de serem retratadas como companheiras de equipe em Umamusume, Special Week e Silence Suzuka nunca competiram juntas na vida real. Elas compartilhavam o mesmo pai, Sunday Silence, e ambas foram montadas pelo jóquei Yutaka Take</li>
-          <li>Yutaka Take foi o jóquei de Silence Suzuka na fatídica edição de 1998 do Tenno Sho (Outono). Um ano depois, ele venceu o Tenno Sho (Outono) de 1999 com Special Week, em tempo recorde</li>
-        </ul>
-      </div>
-
-      <!-- GALERIA DE ARTES -->
-      <div class="section-title theme-green-section"><span>Umamusume Artes</span></div>
-      <div class="artes-container theme-green-gallery" id="galeria-silencesuzuka">
-        
-        <div class="arte-card" onclick="openGalleryModal('galeria-silencesuzuka', 0)">
-          <div class="arte-img-box">
-            <img src="imagens/suzuka/silence-suzuka-uniform.png" alt="Uniforme">
-          </div>
-          <div class="arte-label">Uniforme</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-silencesuzuka', 1)">
-          <div class="arte-img-box">
-            <img src="imagens/suzuka/silence-suzuka-racing.png" alt="Corrida">
-          </div>
-          <div class="arte-label">Corrida</div>
-        </div>
-
-        <div class="arte-card" onclick="openGalleryModal('galeria-silencesuzuka', 2)">
-          <div class="arte-img-box">
-            <img src="imagens/suzuka/silence-suzuka-concept.png" alt="Arte Conceitual">
-          </div>
-          <div class="arte-label">Arte Conceitual</div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODAL DE VISUALIZAÇÃO EM TELA CHEIA (LIGHTBOX COM SETAS) -->
   <div class="image-modal-overlay" id="imageModal" onclick="closeImageModalOnBg(event)">
     <button class="close-image-btn" onclick="closeImageModal()">✕</button>
     <button class="nav-btn prev-btn" onclick="changeImage(-1)">❮</button>
@@ -933,19 +146,79 @@
     <div class="credit-tag">Desenvolvido por @Thiagobaoo 🐴✨</div>
   </footer>
 
-  <script>
-    // ORDENAR CARDS EM ORDEM ALFABÉTICA AUTOMATICAMENTE
-    function sortCardsAlphabetically() {
-      let grid = document.getElementById('characterGrid');
-      let cards = Array.from(grid.getElementsByClassName('card-mini'));
+  <!-- CARREGA O BANCO DE DADOS SEPARADO -->
+  <script src="characters.js"></script>
 
-      cards.sort((a, b) => {
-        let nameA = a.querySelector('h3').innerText.toLowerCase();
-        let nameB = b.querySelector('h3').innerText.toLowerCase();
-        return nameA.localeCompare(nameB);
+  <script>
+    // GERADOR AUTOMÁTICO DE CARDS E MODAIS
+    function renderWiki() {
+      const grid = document.getElementById('characterGrid');
+      const modals = document.getElementById('modalsContainer');
+      grid.innerHTML = '';
+      modals.innerHTML = '';
+
+      // Ordena de A a Z
+      charactersData.sort((a, b) => a.name.localeCompare(b.name));
+
+      charactersData.forEach(c => {
+        // Criar Card Mini
+        grid.innerHTML += `
+          <div class="card-mini ${c.theme}" data-name="${c.searchTerms}" onclick="openModal('modal-${c.id}')">
+            <div class="avatar-frame"><img src="${c.icon}" alt="${c.name}"></div>
+            <div class="mini-info">
+              <h3>${c.name}</h3>
+              <p><b>Dubladora:</b> ${c.voice}</p>
+              <span class="click-hint">Clique para ver mais ➔</span>
+            </div>
+          </div>
+        `;
+
+        // Criar Galeria HTML
+        let galleryHTML = c.gallery.map((g, idx) => `
+          <div class="arte-card" onclick="openGalleryModal('galeria-${c.id}', ${idx})">
+            <div class="arte-img-box"><img src="${g.img}" alt="${g.label}"></div>
+            <div class="arte-label">${g.label}</div>
+          </div>
+        `).join('');
+
+        // Criar Curiosidades HTML
+        let curiositiesHTML = c.curiosidades.map(item => `<li>${item}</li>`).join('');
+
+        // Criar Modal Completo
+        modals.innerHTML += `
+          <div class="modal-overlay" id="modal-${c.id}" onclick="closeModalOnBg(event, 'modal-${c.id}')">
+            <div class="modal-content">
+              <button class="close-btn" onclick="closeModal('modal-${c.id}')">✕</button>
+              <div class="modal-header-banner ${c.theme}-banner"><span>${c.name}</span></div>
+              <div class="info-group" style="margin-bottom: 12px; font-style: italic; color: #555;"><b>Introdução:</b> "${c.intro}"</div>
+              <div class="info-group"><b>Dubladora:</b> ${c.voice}</div>
+              <div class="info-group"><b>Aniversário:</b> ${c.birthday}</div>
+              <div class="info-group"><b>Altura:</b> ${c.height} | <b>Peso:</b> ${c.weight}</div>
+              <div class="info-group"><b>Tamanho do pé:</b> ${c.shoeSize}</div>
+              <div class="info-group"><b>Colega de Quarto:</b> ${c.roommate}</div>
+              <div class="info-group"><b>Escolaridade:</b> ${c.education}</div>
+              
+              <div class="section-title ${c.theme}-section"><span>Medidas</span></div>
+              <div class="info-group"><b>Busto:</b> ${c.bust} | <b>Cintura:</b> ${c.cintura} | <b>Quadril:</b> ${c.quadril}</div>
+
+              <div class="section-title ${c.theme}-section"><span>Perfil e Habilidades</span></div>
+              <div class="info-group"><b>Ponto Forte:</b> ${c.strengths}</div>
+              <div class="info-group"><b>Ponto Fraco:</b> ${c.weaknesses}</div>
+              <div class="info-group"><b>Cauda:</b> ${c.tail}</div>
+              <div class="info-group"><b>Orelhas:</b> ${c.ears}</div>
+
+              <div class="curiosidades">
+                <b>Curiosidades:</b>
+                <ul>${curiositiesHTML}</ul>
+              </div>
+
+              <div class="section-title ${c.theme}-section"><span>Umamusume Artes</span></div>
+              <div class="artes-container" id="galeria-${c.id}">${galleryHTML}</div>
+            </div>
+          </div>
+        `;
       });
 
-      cards.forEach(card => grid.appendChild(card));
       updateCharCounter();
     }
 
@@ -953,104 +226,58 @@
       let cards = document.getElementsByClassName('card-mini');
       let visibleCount = 0;
       for (let i = 0; i < cards.length; i++) {
-        if (cards[i].style.display !== "none") {
-          visibleCount++;
-        }
+        if (cards[i].style.display !== "none") visibleCount++;
       }
       document.getElementById('charCounter').innerText = `Total: ${visibleCount}`;
     }
 
-    // Executa a ordenação assim que a página carregar
-    window.addEventListener('DOMContentLoaded', sortCardsAlphabetically);
-
-    // Filtro de pesquisa
     function filterCards() {
       let input = document.getElementById('searchInput').value.toLowerCase();
       let cards = document.getElementsByClassName('card-mini');
-
       for (let i = 0; i < cards.length; i++) {
         let name = cards[i].getAttribute('data-name');
-        if (name.includes(input)) {
-          cards[i].style.display = "flex";
-        } else {
-          cards[i].style.display = "none";
-        }
+        cards[i].style.display = name.includes(input) ? "flex" : "none";
       }
       updateCharCounter();
     }
 
-    // Abrir e Fechar Modal Principal
-    function openModal(id) {
-      document.getElementById(id).classList.add('active');
-    }
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function closeModalOnBg(event, id) { if (event.target.classList.contains('modal-overlay')) closeModal(id); }
 
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('active');
-    }
-
-    function closeModalOnBg(event, id) {
-      if (event.target.classList.contains('modal-overlay')) {
-        closeModal(id);
-      }
-    }
-
-    // NAVEGAÇÃO DA GALERIA EM TELA CHEIA (LIGHTBOX)
     let currentGalleryImages = [];
     let currentImageIndex = 0;
 
     function openGalleryModal(galleryId, index) {
       let container = document.getElementById(galleryId);
       let imgs = container.getElementsByTagName('img');
-      
       currentGalleryImages = [];
-      for (let i = 0; i < imgs.length; i++) {
-        currentGalleryImages.push(imgs[i].src);
-      }
-
+      for (let i = 0; i < imgs.length; i++) currentGalleryImages.push(imgs[i].src);
       currentImageIndex = index;
-      updateExpandedImage();
-
+      document.getElementById('expandedImg').src = currentGalleryImages[currentImageIndex];
       document.getElementById('imageModal').classList.add('active');
-    }
-
-    function updateExpandedImage() {
-      let expandedImg = document.getElementById('expandedImg');
-      expandedImg.src = currentGalleryImages[currentImageIndex];
     }
 
     function changeImage(direction) {
       currentImageIndex += direction;
-      if (currentImageIndex < 0) {
-        currentImageIndex = currentGalleryImages.length - 1;
-      } else if (currentImageIndex >= currentGalleryImages.length) {
-        currentImageIndex = 0;
-      }
-      updateExpandedImage();
+      if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
+      else if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
+      document.getElementById('expandedImg').src = currentGalleryImages[currentImageIndex];
     }
 
-    function closeImageModal() {
-      document.getElementById('imageModal').classList.remove('active');
-    }
+    function closeImageModal() { document.getElementById('imageModal').classList.remove('active'); }
+    function closeImageModalOnBg(event) { if (event.target.classList.contains('image-modal-overlay')) closeImageModal(); }
 
-    function closeImageModalOnBg(event) {
-      if (event.target.classList.contains('image-modal-overlay')) {
-        closeImageModal();
-      }
-    }
-
-    // NAVEGAÇÃO PELO TECLADO
     document.addEventListener('keydown', function(event) {
       let modal = document.getElementById('imageModal');
       if (modal.classList.contains('active')) {
-        if (event.key === 'ArrowLeft') {
-          changeImage(-1);
-        } else if (event.key === 'ArrowRight') {
-          changeImage(1);
-        } else if (event.key === 'Escape') {
-          closeImageModal();
-        }
+        if (event.key === 'ArrowLeft') changeImage(-1);
+        else if (event.key === 'ArrowRight') changeImage(1);
+        else if (event.key === 'Escape') closeImageModal();
       }
     });
+
+    window.addEventListener('DOMContentLoaded', renderWiki);
   </script>
 
 </body>
